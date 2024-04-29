@@ -1,0 +1,302 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 5 (\S 2.8 - \S2.9, \S6.1)} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Problem 1}
+Suppose a $4 \times 7$ matrix $A$ has three pivot columns.
+\begin{enumerate}[label = \roman*.]
+    \item Is $\operatorname{Col} A$ the same as $\mathbb{R}^{3}$?
+    \item What is the dimension of the null space of $A$?
+    \item What is the rank of a $6 \times 8$ matrix whose null space is three dimensional?
+    \item If the rank of a $9 \times 8$ matrix $A$ is 7 , what is the dimension of the solutions space of $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$?
+\end{enumerate}
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 1 Solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item The column space of an $m\times n$ matrix $A$, denoted as $\operatorname{Col} A$, encompasses all linear combinations of its columns. If $A = \begin{bmatrix} \vec{\boldsymbol{a}}_1 & \cdots &  \vec{\boldsymbol{a}}_n \end{bmatrix}$, where the columns are in $\mathbb{R}^m$, then $\operatorname{Col} A$ is equivalent to $\operatorname{Span} \left\{  \vec{\boldsymbol{a}}_1, \ldots,  \vec{\boldsymbol{a}}_n \right\}$. The column space of an $m \times n$ matrix forms a subspace of $\mathbb{R}^m$. $\operatorname{Col} A$ equals $\mathbb{R}^m$ only if the columns of $A$ span $\mathbb{R}^m$. Otherwise, $\operatorname{Col} A$ is merely a subset of $\mathbb{R}^m$. Since the column space of $A$ is spanned by its pivot columns, its dimension equals the rank of the matrix, which is 3. Hence, $\operatorname{Col} A \subset \mathbb{R}^3$, yet it is \underline{not equivalent} to $\mathbb{R}^3$ since there is not a pivot in every row, meaning the columns of $A$ do not span $\mathbb{R}^3$.
+        
+        \item The dimension of the null space for a $m \times n$ matrix $A$, denoted as $\operatorname{dim}(\operatorname{Nul} \, A)$, is determined by the rank-nullity theorem. This theorem is represented as follows: 
+
+        $$\operatorname{dim}(\operatorname{Nul} \, A) + \underbrace{\operatorname{dim}(\operatorname{Col} \, A)}_{\text{Rank of the matrix}} = n$$
+
+        Thus, given that the number of columns of matrix \( A \) is 7 and the rank of \( A \) is 3, the dimension of the null space of matrix \( A \) is 4, indicating there are 4 dimensions in the null space of \( A \).
+
+        \item Given that $\text{dim}(\operatorname{Nul} \, A) = 3 $ and $n = 8$, where $n$ represents the number of columns of matrix $A$, and it is known that the matrix has dimensions $6 \times 8$, we can use the rank-nullity theorem to find the dimension of the column space. Thus, the rank of matrix $A$ is $5$, which indicates the dimension of the column space for the $6 \times 8$ matrix.
+
+        \item The null space of an $m\times n$ matrix $A$, written as $\operatorname{Nul} A$, is the set of all solutions of the homogeneous equation $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$. Thus once again applying the rank-nullity theorem where $\operatorname{dim}(\operatorname{Col} \, A) = 7$ and $n = 8$, where $n$ represents the number of columns of matrix $A$, we can use the rank-nullity theorem to find the dimension of the null space. Thus, the dimension of the solutions space of $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$, is $1$.
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section{Problem 2}
+Which of the following sets of vectors are bases for $\mathbb{R}^{2}$ ?
+
+\begin{tasks}(4)
+    \task $\left\{\begin{bmatrix} 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -1 \\ 0 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ -1 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 2 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix} 1 \\ 2 \end{bmatrix}\right\}$
+\end{tasks}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 2 Solutions}]
+
+\begin{definition}
+Let $H$ be a subspace of a vector space $V$. An indexed set of vectors $\mathcal{B} = \{\vec{\boldsymbol{b}}_{1}, \ldots, \vec{\boldsymbol{b}}_p\}$ in $V$ is a basis for $H$ if $\mathcal{B}$ is a linearly independent set, and the subspace spanned by $\mathcal{B}$ coincides with $H$; that is, $H = \operatorname{Span} \{\vec{\boldsymbol{b}}_{1}, \ldots, \vec{\boldsymbol{b}}_p\}$
+\end{definition}
+
+\tcblower
+
+The sets satisfying the given definition are only (A.) and (D.).
+\end{tcolorbox}
+
+\section{Problem 3}
+What is the inner product of the vectors $\vec{\boldsymbol{u}}=\begin{bmatrix}5 \\ 0\end{bmatrix}$ and $\vec{\boldsymbol{v}}=\begin{bmatrix}15 \\ -10\end{bmatrix}$?
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 3 Solutions}]
+    $$\vec{\boldsymbol{u}} \cdot \vec{\boldsymbol{v}}  = \vec{\boldsymbol{u}}^{T}\vec{\boldsymbol{v}} =\begin{bmatrix}
+        u_1 & u_2 & \cdots & u_n
+    \end{bmatrix} \begin{bmatrix}
+        v_1\\ v_2\\ \vdots \\ v_{n}
+    \end{bmatrix} = u_1v_1+u_2v_2 + \cdots + u_nv_n$$
+    \tcblower
+
+$$\vec{\boldsymbol{u}} \cdot \vec{\boldsymbol{v}}  = \vec{\boldsymbol{u}}^{T}\vec{\boldsymbol{v}} = \begin{bmatrix} 5 & 0 \end{bmatrix} \begin{bmatrix} 15\\ -10 \end{bmatrix} = (5)(15) + (0)(1) = \boxed{75}$$
+\end{tcolorbox}
+
+\newpage
+\section{Problem 4}
+Arrange the following vectors from greatest to least in terms of their magnitude:
+
+\begin{tasks}(5)
+    \task $\vec{\boldsymbol{a}} = \begin{bmatrix}1 \\ 3 \\ -2\end{bmatrix}$
+    \task $\vec{\boldsymbol{b}} = \begin{bmatrix}0 \\ 4 \\ 2 \\ 1\end{bmatrix}$
+    \task $\vec{\boldsymbol{c}} = \begin{bmatrix}2 \\ 5\end{bmatrix}$
+    \task $\vec{\boldsymbol{d}} = \begin{bmatrix}1 \\ 0 \\ -2 \\ 0 \\ 1\end{bmatrix}$
+    \task $\vec{\boldsymbol{e}} = \begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}$
+\end{tasks}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 4 Solutions}]
+    \begin{definition}
+         The length (or norm) of $\vec{\boldsymbol{v}}$ is the nonnegative scalar $||\vec{\boldsymbol{v}}||$ defined by $$||\vec{\boldsymbol{v}}|| = \sqrt{\vec{\boldsymbol{v}}\cdot \vec{\boldsymbol{v}}} = \sqrt{v_{1}^{2}+v_{2}^{2}+ \cdots + v_{n}^2}, \quad ||\vec{\boldsymbol{v}}||^2 = \vec{\boldsymbol{v}}\cdot \vec{\boldsymbol{v}}$$
+    \end{definition}
+
+    \tcblower
+
+    \begin{enumerate}[label = \Alph*.]
+        \item $||\vec{\boldsymbol{a}}|| = \sqrt{(1)^2+(3)^2+(-2)} = \sqrt{14}$
+        \item $||\vec{\boldsymbol{b}}|| = \sqrt{(0)^2+(4)^2+(2)^2+(1)^2} = \sqrt{21}$
+        \item $||\vec{\boldsymbol{c}}|| = \sqrt{(2)^2+(5)^2} = \sqrt{29}$
+        \item $||\vec{\boldsymbol{d}}|| = \sqrt{(0)^2+(-2)^2+(0)^2+(1)^2} = \sqrt{5}$
+        \item $||\vec{\boldsymbol{e}}|| = \sqrt{(0)^2+(0)^2} = 0$
+    \end{enumerate}
+
+    The following vectors $\left\{\vec{\boldsymbol{a}}, \vec{\boldsymbol{b}}, \vec{\boldsymbol{c}},\vec{\boldsymbol{d}}, \vec{\boldsymbol{e}}\right\}$ from greatest to least in terms of their magnitude is: $$\boxed{\vec{\boldsymbol{c}}, \vec{\boldsymbol{b}}, \vec{\boldsymbol{a}}, \vec{\boldsymbol{d}}, \vec{\boldsymbol{e}}}$$
+    
+\end{tcolorbox}
+
+\newpage
+\section{Problem 5}
+Determine the dimension of the subspace spanned by the vectors $\begin{bmatrix} 1 \\ -3 \\ 2 \\ -4 \end{bmatrix}$, $\begin{bmatrix} -3 \\ 9 \\ -6 \\ 12 \end{bmatrix}$, $\begin{bmatrix} 2 \\ -1 \\ 4 \\ 2 \end{bmatrix}$, and $\begin{bmatrix} -4 \\ 5 \\ -3 \\ 7 \end{bmatrix}$.
+\vspace{1cm}
+\begin{tcolorbox}[boxrule=1mm, width=(\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 5 Solutions}]
+
+$$\begin{bmatrix}
+1 & -3 & 2 & -4 \\
+-3 & 9 & -1 & 5 \\
+2 & -6 & 4 & -3 \\
+-4 & 12 & 2 & 7 \\
+\end{bmatrix} \xrightarrow{R_2 = R_2 + 3R_1}
+\begin{bmatrix}
+1 & -3 & 2 & -4 \\
+0 & 0 & 5 & -7 \\
+2 & -6 & 4 & -3 \\
+-4 & 12 & 2 & 7 \\
+\end{bmatrix}\xrightarrow{R_3 = R_3 +3R_1}
+\begin{bmatrix}
+1 & -3 & 2 & -4 \\
+0 & 0 & 5 & -7 \\
+0 & 0 & 0 & 5 \\
+-4 & 12 & 2 & 7 \\
+\end{bmatrix}\xrightarrow{R_4 = R_4 +4R_1}$$
+
+$$\begin{bmatrix}
+1 & -3 & 2 & -4 \\
+0 & 0 & 5 & -7 \\
+0 & 0 & 0 & 5 \\
+0 & 0 & 10 & -9 \\
+\end{bmatrix}\xrightarrow[R_4 = R_3]{R_3=R_4}
+\begin{bmatrix}
+1 & -3 & 2 & -4 \\
+0 & 0 & 5 & -7 \\
+0 & 0 & 10 & -9 \\
+0 & 0 & 0 & 5 \\
+\end{bmatrix}$$
+\tcblower
+
+From the row echelon form, it is evident that columns 1, 3, and 4 are linearly independent as each possesses a pivot entry. The basis for these vectors is given by:
+
+$$\mathcal{C}(A) = \text{Span}\left\{
+\begin{bmatrix}
+1 \\ -3 \\ 2 \\ 4
+\end{bmatrix},
+\begin{bmatrix}
+2 \\ -1 \\ 4 \\ 2
+\end{bmatrix},
+\begin{bmatrix}
+-4 \\ 5 \\ -3 \\ 7
+\end{bmatrix}
+\right\}$$
+
+The dimension of a nonzero subspace $A$, denoted by $\operatorname{dim} A$, refers to the number of vectors in any basis for $H$. Moreover, the rank of a matrix $A$,  equals the dimension of the column space of $A$, denoted $\operatorname{dim} \mathcal{C}(A)$. Given that the basis contains three entries, representing the span of the column space, the vectors above form a subspace for $\mathbb{R}^3$.
+\end{tcolorbox}
+
+\newpage
+\section{Problem 6}
+$$\begin{bmatrix}
+1 & -2 & 9 & 5 & 4 \\
+1 & -1 & 6 & 5 & -3 \\
+-2 & 0 & -6 & 1 & -2 \\
+4 & 1 & 9 & 1 & -9
+\end{bmatrix} \rightsquigarrow
+\begin{bmatrix}
+1 & -2 & 9 & 5 & 4 \\
+0 & 1 & -3 & 0 & -7 \\
+0 & 0 & 0 & 1 & -2 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix} \rightsquigarrow
+B=\begin{bmatrix}
+1 & 0 & 3 & 0 & 0 \\
+0 & 1 & -3 & 0 & -7 \\
+0 & 0 & 0 & 1 & -2 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}$$
+
+\begin{enumerate}[label = \roman*.]
+    \item Find a basis for and state the dimension of $\operatorname{Col} A$.
+    \item Find a basis for and state the dimension of $\operatorname{Nul} A$.
+    \item What is the rank of $A$ ?
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 6 Solutions}]
+\begin{itemize}
+    \item A basis for the column space of a matrix $A$ is the columns of $A$ corresponding to columns of $\operatorname{rref}(A)$ that contain leading ones.
+    \item The solution to $A\vec{\boldsymbol{x}} = \vec{\boldsymbol{0}}$ (which can be easily obtained from $\operatorname{rref}(A)$ by augmenting it with a column of zeros) will be an arbitrary linear combination of vectors. Those vectors form a basis for $\operatorname{Nul} A$.
+\end{itemize}
+\tcblower
+\begin{enumerate}[label = \roman*.]
+    \item $$\underbrace{\mathcal{C}(A)}_{\text{column space}} = \left\{\begin{bmatrix}1\\1\\-2\\4 \end{bmatrix},\begin{bmatrix}-2\\-1\\0\\1 \end{bmatrix},\begin{bmatrix}5\\5\\1\\1 \end{bmatrix} \right\} \Longrightarrow \underbrace{\operatorname{dim}(\mathcal{C}(A))}_{\text{rank of the matrix}}  = 3 $$
+    \item 
+        \begin{align*}
+            x_{1}+3x_{3} &= 0\\
+            x_{2}-3x_{3}-7x_{5} &=0\\
+            x_{4}-2x_{5} &=0
+        \end{align*}
+        
+ $$\vec{\boldsymbol{x}} = x_{3}\begin{bmatrix}-3\\3\\1\\0\\0 \end{bmatrix}+ x_{5}\begin{bmatrix}0\\7\\0\\2\\1 \end{bmatrix} \Longrightarrow \underbrace{\mathcal{N}(A)}_{\text{null space}}=\left\{\begin{bmatrix}-3\\3\\1\\0\\0 \end{bmatrix},\begin{bmatrix}0\\7\\0\\2\\1 \end{bmatrix} \right\} \Longrightarrow \operatorname{dim}(\mathcal{N}(A)) = 2 $$
+ \item $$\operatorname{Rank} (A) = 3$$
+\end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section{Problem 7}
+For each of the following questions, provide a brief explanation along with your final answer.
+
+\begin{enumerate}[label = \roman*.]
+    \item If the subspace of all solutions of $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{0}}$ has a basis consisting of three vectors and if $A$ is a $5 \times 7$ matrix, what is the rank of $A$?
+    \item What is the rank of a $4 \times 5$ matrix whose null space is three dimensional?
+    \item  If the rank of a $7 \times 6$ matrix $A$ is 4 , what is the dimension of the solution space of $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{0}}$?
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 7 Solutions}]
+Rank-nullity theorem:  $$\operatorname{dim}(\operatorname{Nul} \, A) + \underbrace{\operatorname{dim}(\operatorname{Col} \, A)}_{\text{Rank of the matrix}} = n$$
+\tcblower
+    \begin{enumerate}[label = \roman*.]
+        \item To find the rank of $A_{5 \times 7}$, denoted as $\operatorname{rank}(A)$, we use the formula: $\operatorname{rank}(A) = n - \operatorname{dim}(\operatorname{Nul} \, A)$, where $n$ represents the number of columns in $A$, and $\operatorname{dim}(\operatorname{Nul} \, A)$ is the dimension of the null space of $A$. Given that $n = 7$ and $\operatorname{dim}(\operatorname{Nul} \, A) = 3$, we can calculate the rank of $A$ as follows: $\operatorname{rank}(A) = 7 - 3 = 4$. Therefore, the rank of $A$ is 4.
+        \item To find the rank of $B_{4\times 5}$, denoted as $\operatorname{rank}(B)$, we use the formula: $\operatorname{rank}(B) = n - \operatorname{dim}(\operatorname{Nul} \, B)$, where $n$ represents the number of columns in $B$, and $\operatorname{dim}(\operatorname{Nul} \, B)$ is the dimension of the null space of $A$. Given that $n = 5$ and $\operatorname{dim}(\operatorname{Nul} \, B) = 3$, we can calculate the rank of $A$ as follows: $\operatorname{rank}(B) = 5 - 3 = 2$. Therefore, the rank of $B$ is 2. 
+        \item To find the dimension of the null space of $C_{7\times 6}$, denoted as $\operatorname{dim}(\operatorname{Nul} \, C)$, we use the formula: $\operatorname{dim}(\operatorname{Nul} \, C) = \operatorname{col}(C)-n$, where $n$ represents the number of columns in $C$, and $\operatorname{dim}(\operatorname{Col} \, B)$ is the dimension of the column space of $C$. Given that $n = 6$ and $\operatorname{dim}(\operatorname{Col} \, C) = 4$, we can calculate the rank of $A$ as follows: $\operatorname{rank}(B) = 6 - 4 = 2$. Therefore, the dimension of the null space of $C$ is 2. 
+    \end{enumerate}
+\end{tcolorbox}
+
+\end{document}

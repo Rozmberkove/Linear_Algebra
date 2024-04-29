@@ -1,0 +1,326 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 6 (\S6.2 - \S6.5)} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Problem 1}
+Consider the matrix $A=\begin{bmatrix}1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1\end{bmatrix}$.
+
+\begin{enumerate}[label = \roman*.]
+    \item How many vectors are in $\operatorname{Col} A$?
+    \begin{enumerate}
+        \item There are \underline{infinitely} many vectors in the $\operatorname{Col} A$. 
+    \end{enumerate}
+    \item How many vectors are in $\operatorname{Nul} A$?
+    \begin{enumerate}
+        \item Since the columns of $A$ are linearly independent, the equation $\displaystyle \vec{\boldsymbol{0}} = x_{1}\begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix}+x_{2}\begin{bmatrix}0 \\ 1 \\ 0 \end{bmatrix}+x_{3}\begin{bmatrix}0 \\ 0 \\ 1 \end{bmatrix}$ is consistent yet unique in other words there is only \underline{one} vector in the $\operatorname{Nul} A$ i.e. $\vec{0}$.
+    \end{enumerate}
+    \item How many vectors are in a basis for $\operatorname{Col} A$?
+        \begin{enumerate}
+            \item $\displaystyle \operatorname{Col} A = \left\{\begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix}0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix}1 \\ 1 \\ 1 \end{bmatrix}\right\} \leadsto \operatorname{dim}\left( \operatorname{Col} A\right) =3$
+        \end{enumerate}
+\end{enumerate}
+
+\section{Problem 2}
+
+Consider the following sets of vectors.
+
+\begin{tasks}(3)
+    \task $\left\{\begin{bmatrix}[1.5] 1 \\ -2 \\ 1 \end{bmatrix}, \begin{bmatrix}[1.5] 0 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix}[1.5] -5 \\ -2 \\ 1 \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix}[1.5] \frac{1}{3} \\ \frac{1}{3} \\ \frac{1}{3} \end{bmatrix}, \begin{bmatrix}[1.5] -\frac{1}{2} \\ 0 \\ \frac{1}{2} \end{bmatrix}\right\}$
+    \task $\left\{\begin{bmatrix}[1.5] \frac{1}{\sqrt{18}} \\ \frac{4}{\sqrt{18}} \\ \frac{1}{\sqrt{18}} \end{bmatrix}, \begin{bmatrix}[1.5] \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix}, \begin{bmatrix}[1.5] -\frac{2}{3} \\ \frac{1}{3} \\ -\frac{2}{3} \end{bmatrix}\right\}$
+\end{tasks}
+
+\begin{enumerate}[label = \roman*.]
+    \item Which of the sets given above are orthogonal sets?
+        \begin{enumerate}
+            \item Sets (A.) and (B.) both orthogonal sets.
+        \end{enumerate}
+    \item Which of the sets given above are orthonormal sets?
+    \begin{enumerate}
+        \item None of the sets are orthonormal. 
+        \begin{align}
+            \begin{bmatrix} 1 & 0 & -5 \\ -2 & 1 & -2 \\ 1 & 2 & 1 \end{bmatrix}\begin{bmatrix} 1 & -2 & 1 \\ 0 & 1 & 2 \\ -5 & -2 & 1 \end{bmatrix} &=  \begin{bmatrix} 6 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 30 \end{bmatrix}\\
+            \begin{bmatrix}[1.5] \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \\ -\frac{1}{2} & 0 & \frac{1}{2} \end{bmatrix} \begin{bmatrix}[1.5] \frac{1}{3} & -\frac{1}{2} \\ \frac{1}{3} & 0 \\ \frac{1}{3} & \frac{1}{2} \end{bmatrix} &= \begin{bmatrix}[1.5] \frac{1}{3} & 0 \\ 0 & \frac{1}{2} \end{bmatrix}
+        \end{align}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Problem 3}
+Let $U$ be an $n \times n$ orthogonal matrix. Is $U$ invertible? Why or why not?
+
+\section{Problem 4}
+Let $\vec{\boldsymbol{y}}=\begin{bmatrix}[1.5] 4 \\ 8 \\ 1 \end{bmatrix}$, $\vec{\boldsymbol{u}}_{1}=\begin{bmatrix}[1.5] \frac{2}{3} \\ \frac{1}{3} \\ \frac{2}{3} \end{bmatrix}$, $\vec{\boldsymbol{u}}_{2}=\begin{bmatrix}[1.5] -\frac{2}{3} \\ \frac{2}{3} \\ \frac{1}{3} \end{bmatrix}$, and let $W=\operatorname{Span}\left\{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \right\}$.
+
+\begin{enumerate}[label = \roman*.]
+    \item Is $\left\{\vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2}\right\}$ a basis for $W$? an orthogonal basis? an orthonormal basis? Justify your answers.
+    \item Compute $\operatorname{proj}_{W} \vec{\boldsymbol{y}}$ (i.e., $\hat{\boldsymbol{y}}$).
+    \item We also have an alternative method calculating $\operatorname{proj}_{W} \vec{\boldsymbol{y}}$, given an orthonormal basis (which we have above).
+    \begin{enumerate}[label = (\alph*.)]
+        \item Using the basis given as columns for a matrix $U$, compute $U^{T} U$. \footnote[2]{This isn't part of the method. This just reinforces the properties of a matrix with orthonormal columns}
+        
+        \item Using the basis given as columns for a matrix $U$, now compute $UU^{T}$.\footnote[5]{This is the method}
+        
+        \item Using the matrix found in (b.), compute $U U^{T} \vec{\boldsymbol{y}}$.
+    \end{enumerate}
+\end{enumerate}
+
+\section{Problem 5}
+Consider the system of equations $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ where
+
+$$ A=\begin{bmatrix}1 & 1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \\ -1 & 1 & -1 \end{bmatrix} \text { and } \vec{\boldsymbol{b}}=\begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \end{bmatrix} $$
+
+\begin{enumerate}[label = \roman*.]
+    \item Show that $\vec{\boldsymbol{b}}$ is not in $\operatorname{Col} A$.
+    \item Show that columns of $A$ are orthogonal.
+    \item We still would like to find some approximate solution to $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$. Since we know nothing about the solution, the best we can do is to find a vector in Col $A$ that is as close to $\vec{\boldsymbol{b}}$ as possible. Find the vector, $\hat{\boldsymbol{b}}$, in $\operatorname{Col} A$ such that $\hat{\boldsymbol{b}}$ is the best approximation to $\vec{\boldsymbol{b}}$.
+    \item Just to address any doubt, pick a random vector that you think is close to $\vec{\boldsymbol{b}}$\footnote[8]{CAREFUL! Your choice must be in Col $A$, so create your vector, $\vec{\boldsymbol{a}}$., using the columns or use software to confirm that $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{a}}$ is consistent}. Compute the distance between your vector and $\vec{\boldsymbol{b}}$. Is it better or worse than the distance between $\hat{\boldsymbol{b}}$ and $\vec{\boldsymbol{b}}$?
+    
+\end{enumerate}
+\newpage
+\section{Selected Solutions}
+
+\begin{tcolorbox}[boxrule=1mm,before=\hfill,after=\hfill,adjusted title={Problem 3 solutions}]
+    A matrix $U$ with orthonormal columns, denoted as an $n\times n$ matrix\footnote{The general proof applies similarly to matrices $m\times n$ with any number of columns}, satisfies the condition $U^{T}U = I$, where $I$ is the identity matrix. To illustrate this, let's consider a specific scenario where $U$ has only three columns, each representing a vector in $\mathbb{R}^n$. Let $U = \begin{bmatrix}[1.5] \vec{\boldsymbol{u}}_1 & \vec{\boldsymbol{u}}_2 &  \vec{\boldsymbol{u}}_3 \end{bmatrix}$, where $\vec{\boldsymbol{u}}_1$, $\vec{\boldsymbol{u}}_2$, and $\vec{\boldsymbol{u}}_3$ are column vectors. Now, let's compute $U^{T}U$:
+
+\begin{equation}
+    U^{T}U = \begin{bmatrix}[1.5]\vec{\boldsymbol{u}}_{1}^{T}\\ \vec{\boldsymbol{u}}_{2}^{T}\\ \vec{\boldsymbol{u}}_{3}^{T} \end{bmatrix} \begin{bmatrix}[1.5] \vec{\boldsymbol{u}}_1 & \vec{\boldsymbol{u}}_2 & \vec{\boldsymbol{u}}_3 \end{bmatrix} = \begin{bmatrix}[1.5]
+    \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{1} & \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{2} & \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{3}\\
+    \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{1} &
+    \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{2} &
+    \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{3}\\
+    \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{1} &
+    \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{2} &
+    \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{3}
+\end{bmatrix}
+\end{equation}
+
+The entries in this resulting matrix represent inner products, denoted using transpose notation. For the columns of $U$ to be orthogonal, the following conditions must hold:
+
+$$\vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{2} = \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{1} = 0, \quad \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{3} = \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{1} = 0, \quad \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{3} = \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{3} = 0$$
+
+This can be visualized as:
+
+\begin{equation}
+    \begin{bmatrix}[1.5] \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{1} & 0 & 0\\ 0 & \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{2} & 0\\ 0 & 0 & \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{3} \end{bmatrix}
+\end{equation}
+
+For the columns of $U$ to have unit length, the following conditions must hold:
+
+\begin{equation}
+    \vec{\boldsymbol{u}}_{1}^{T}\vec{\boldsymbol{u}}_{1} = 1, \quad \vec{\boldsymbol{u}}_{2}^{T}\vec{\boldsymbol{u}}_{2} =1, \quad \vec{\boldsymbol{u}}_{3}^{T}\vec{\boldsymbol{u}}_{3}=1
+\end{equation}
+
+Visualizing this, appears the identity matrix:
+
+\begin{equation}
+    U^{T}U=I_{3} = \begin{bmatrix} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{bmatrix}
+\end{equation}
+
+Thus, it has been shown from equations (3)–(6) that for any $n\times n$ matrix $U$ to have orthonormal columns, it must satisfy $U^{T}U = I$. \qed
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxrule=1mm,before=\hfill,after=\hfill,adjusted title={Problem 4 solutions}]
+ \textbf{The Orthogonal Decomposition Theorem:} Let $W$ be a subspace of $\boldsymbol{R}^n$. Then each $\vec{\boldsymbol{y}}$ in $\boldsymbol{R}^n$ can be written uniquely in the form, $\vec{\boldsymbol{y}}= \hat{\boldsymbol{y}} + \vec{\boldsymbol{z}}$, where $\hat{\boldsymbol{y}}$ is in $W$ and $\vec{\boldsymbol{z}}$ is in $W^{\bot}$. In fact, if $\left\{\vec{\boldsymbol{u}}_1,\ldots,\vec{\boldsymbol{u}}_{p}\right\}$ is any orthogonal basis of $W$, then $\hat{\boldsymbol{y}}$ as below. 
+
+ $$\hat{\boldsymbol{y}} = \operatorname{proj}_{W} \vec{\boldsymbol{y}} = \frac{\vec{\boldsymbol{y}}\cdot \vec{\boldsymbol{u}}_{1}}{\vec{\boldsymbol{u}}_{1} \cdot \vec{\boldsymbol{u}}_{1}}\vec{\boldsymbol{u}}_{1} + \cdots + \frac{\vec{\boldsymbol{y}}\cdot \vec{\boldsymbol{u}}_{p}}{\vec{\boldsymbol{u}}_{p} \cdot \vec{\boldsymbol{u}}_{p}}\vec{\boldsymbol{u}}_{p}$$
+ 
+\tcblower
+\begin{enumerate}[label=\roman*.]
+    \item Given \( W \) is a subspace of some vector space \( \mathbb{R}^2 \), the indexed set of vectors \( \mathcal{B} = \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \) in \( \mathbb{R}^2 \) is a basis for \( W \) if \( \mathcal{B} \) is a linearly independent set and if the subspace spanned by \( \mathcal{B} \) coincides with \( W \); that is, \( W = \text{Span} \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \). Since \( \vec{\boldsymbol{u}}_{1} \) and \( \vec{\boldsymbol{u}}_{2} \) are linearly independent, and it is known that \( W = \text{Span} \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \), thus by definition \( \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \) is a basis for \( W \). Now, an orthogonal basis for a subspace \( W \) of \( \mathbb{R}^2 \) is a basis for \( W \) that is also an orthogonal set. The vectors \( \vec{\boldsymbol{u}}_{1} \) and \( \vec{\boldsymbol{u}}_{2} \) in \( \mathbb{R}^n \) are orthogonal to each other since \( \vec{\boldsymbol{u}}_{1} \cdot \vec{\boldsymbol{u}}_{2} = 0 \), thus \( \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \) forms an orthogonal basis. The set \( \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \) is an orthonormal basis for \( W \), if $W$ is an orthonormal set of unit vectors. Since both \( \vec{\boldsymbol{u}}_{1} \cdot \vec{\boldsymbol{u}}_{1} = 1 \) and \( \vec{u}_{2} \cdot \vec{\boldsymbol{u}}_{2} = 1 \), \( \vec{\boldsymbol{u}}_{1} \) and \(\vec{\boldsymbol{u}}_{2} \) are normalized. Thus, \( \{ \vec{\boldsymbol{u}}_{1}, \vec{\boldsymbol{u}}_{2} \} \) is an orthonormal basis for \( \mathbb{R}^2 \).
+
+    \item Using the The Orthogonal Decomposition Theorem from above: 
+    \begin{align*}
+        \hat{\boldsymbol{y}} &= \operatorname{proj}_{W} \vec{\boldsymbol{y}} = \frac{\vec{\boldsymbol{y}}\cdot \vec{\boldsymbol{u}}_{1}}{\vec{\boldsymbol{u}}_{1} \cdot \vec{\boldsymbol{u}}_{1}}\vec{\boldsymbol{u}}_{1} + \frac{\vec{\boldsymbol{y}}\cdot \vec{\boldsymbol{u}}_{2}}{\vec{\boldsymbol{u}}_{2} \cdot \vec{\boldsymbol{u}}_{2}}\vec{\boldsymbol{u}}_{2}\\
+        &= 6\begin{bmatrix}[1.5] \frac{2}{3} \\ \frac{1}{3} \\ \frac{2}{3} \end{bmatrix} + 3\begin{bmatrix}[1.5] -\frac{2}{3} \\ \frac{2}{3} \\ \frac{1}{3} \end{bmatrix} = \begin{bmatrix}[1.5] 4 \\ 2 \\ 4 \end{bmatrix} + \begin{bmatrix}[1.5] -2 \\ 2 \\ 1 \end{bmatrix} = \begin{bmatrix}[1.5] 2 \\ 4 \\ 5 \end{bmatrix}
+    \end{align*}
+    \item 
+        \begin{enumerate}[label = (\alph*.)]
+            \item $$I_{2}=U^{T}U = \begin{bmatrix}[1.5] \frac{2}{3} & \frac{1}{3} & \frac{2}{3}\\-\frac{2}{3} & \frac{2}{3} & \frac{1}{3}  \end{bmatrix} \begin{bmatrix}[1.5] \frac{2}{3} & -\frac{2}{3}\\ \frac{1}{3} & \frac{2}{3}\\ \frac{2}{3} & \frac{1}{3}\end{bmatrix} = \begin{bmatrix}[1.5] 1 & 0 \\ 0 & 1\end{bmatrix}$$
+            \item $$UU^{T} = \begin{bmatrix}[1.5] \frac{2}{3} & -\frac{2}{3}\\ \frac{1}{3} & \frac{2}{3}\\ \frac{2}{3} & \frac{1}{3}\end{bmatrix}\begin{bmatrix}[1.5] \frac{2}{3} & \frac{1}{3} & \frac{2}{3}\\-\frac{2}{3} & \frac{2}{3} & \frac{1}{3}  \end{bmatrix} = \begin{bmatrix}[1.5] \frac{8}{9} & -\frac{2}{9} & \frac{2}{9}\\ -\frac{2}{9} & \frac{5}{9} & \frac{4}{9} \\ \frac{2}{9} & \frac{4}{9} & \frac{5}{9}\end{bmatrix}$$
+            \item $$UU^{T}\vec{\boldsymbol{y}} = \begin{bmatrix}[1.5] \frac{8}{9} & -\frac{2}{9} & \frac{2}{9}\\ -\frac{2}{9} & \frac{5}{9} & \frac{4}{9} \\ \frac{2}{9} & \frac{4}{9} & \frac{5}{9}\end{bmatrix} \begin{bmatrix}[1.5] 4 \\ 8 \\ 1 \end{bmatrix} = \begin{bmatrix}[1.5] 2 \\ 4 \\ 5 \end{bmatrix}$$
+        \end{enumerate}
+    
+\end{enumerate}
+    
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 5 solutions}]
+The row reduction of matrix $A$ is as follows where $B = \operatorname{rref}\left(A\right)$: 
+    $$A=\begin{bmatrix}1 & 1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \\ -1 & 1 & -1 \end{bmatrix} \leadsto \begin{bmatrix}1 & 1 & 0 \\ 0 & -1 & -1 \\ 0 & 0 & -3 \\ 0 & 0 & 0 \end{bmatrix} \leadsto B = \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{bmatrix}$$
+    \tcblower
+
+    \begin{enumerate}[label = \roman*.]
+        \item From matrix $B$ above we can see that all three columns of $A$ are linearly independent, thus the column space is as follows: 
+
+        $$\operatorname{Col}\left(A\right) = \operatorname{Span}\left\{\begin{bmatrix} 1 \\ 1\\0 \\-1 \end{bmatrix},\begin{bmatrix} 1 \\ 0 \\1 \\1 \end{bmatrix},\begin{bmatrix} 0 \\ -1 \\1 \\-1 \end{bmatrix} \right\}$$
+        
+        From the column space of $A$ we can see that $A$ has a rank of 3 thus $\operatorname{Col}\left(A\right)$ forms a subspace of $\mathbb{R}^3$. Given that $\vec{\boldsymbol{b}}\in \mathbb{R}^{4}$ thus the matrix equation $A\vec{\boldsymbol{x}} = \vec{\boldsymbol{b}}$ is inconstant since the $\operatorname{Col}\left(A\right)$ does not span $\mathbb{R}^4$. In other-words $\vec{\boldsymbol{b}}\not\in \mathbb{R}^3$. This can also be shown by augmenting $\left[A\mid \vec{\boldsymbol{b}} \right]$ which is inconsistent since there is a pivot in the last column of the reduced row reduction of the augmented matrix as seen below. 
+
+        $$\left[A\mid \vec{\boldsymbol{b}} \right] = \begin{bmatrix}1 & 1 & 0 & 3 \\ 1 & 0 & -1 & 4 \\ 0 & 1 & 1 & 5 \\ -1 & 1 & -1 & 6\end{bmatrix} \leadsto \begin{bmatrix}1 & 1 & 0 & 3 \\ 0 & -1 & -1 & 1\\ 0 & 0 & -3 & 11 \\ 0 & 0 & 0 & 6\end{bmatrix} \leadsto  \begin{bmatrix}1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1\end{bmatrix}$$
+        
+
+        \item The columns of $A$ are orthogonal since $\vec{\boldsymbol{a}}_{1} \cdot \vec{\boldsymbol{a}}_{2} = 0$, $\vec{\boldsymbol{a}}_{1} \cdot \vec{\boldsymbol{a}}_{3} = 0$, and $\vec{\boldsymbol{a}}_{2} \cdot \vec{\boldsymbol{a}}_{3} = 0$ as seen below.
+
+        \begin{enumerate}[label = (\alph*.)]
+            \item $\vec{\boldsymbol{a}}_{1} \cdot \vec{\boldsymbol{a}}_{2} = \begin{bmatrix} 1 \\ 1\\0 \\-1 \end{bmatrix} \begin{bmatrix} 1 \\ 0\\1 \\1 \end{bmatrix} = (1)(1)+(1)(0)+(0)(1)+(-1)(1)=0$
+            \item $\vec{\boldsymbol{a}}_{1} \cdot \vec{\boldsymbol{a}}_{3} = \begin{bmatrix} 1 \\ 1\\0 \\-1 \end{bmatrix} \begin{bmatrix} 0 \\ -1\\1 \\-1 \end{bmatrix} = (1)(0)+(1)(-1)+(0)(1)+(-1)(-1)=0$
+            \item $\vec{\boldsymbol{a}}_{2} \cdot \vec{\boldsymbol{a}}_{3} = \begin{bmatrix} 1 \\ 0\\1 \\1 \end{bmatrix} \begin{bmatrix} 0 \\ -1\\1 \\-1 \end{bmatrix} = (1)(0)+(0)(-1)+(1)(1)+(1)(-1)=0$
+        \end{enumerate}
+        \item Since the columns of $A$ are linearly independent, then the least-squares solution $\hat{\boldsymbol{x}}$ is given by: 
+        \begin{align}
+            \hat{\boldsymbol{x}} &= \left(A^{T}A\right)^{-1}A^{T}\vec{\boldsymbol{b}}\\
+            &= \left(\begin{bmatrix} 1 & 1 & 0 & -1\\ 1 & 0 & 1 & 1\\ 0 &-1&1&-1\end{bmatrix}\begin{bmatrix}1 & 1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \\ -1 & 1 & -1 \end{bmatrix}\right)^{-1}\begin{bmatrix} 1 & 1 & 0 & -1\\ 1 & 0 & 1 & 1\\ 0 &-1&1&-1\end{bmatrix} \begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \end{bmatrix}\\
+            &= \left(\begin{bmatrix} 3 & 0 & 0 \\ 0 & 3 & 0\\ 0 & 0 & 3
+            \end{bmatrix}\right)^{-1} \begin{bmatrix} 1 \\ 14 \\ -5 \end{bmatrix}= \begin{bmatrix}[1.25]\frac{1}{3} & 0 & 0 \\ 0 & \frac{1}{3} & 0 \\ 0 & 0 & \frac{1}{3} \end{bmatrix}\begin{bmatrix}[1.25] 1 \\ 14 \\ -5 \end{bmatrix} = \begin{bmatrix}[1.25] \frac{1}{3} \\ \frac{14}{3} \\ -\frac{5}{3} \end{bmatrix} 
+        \end{align}
+
+        \item Let $\vec{\boldsymbol{c}} = \begin{bmatrix} 3 \\ 4 \\ 5 \\ 0 \end{bmatrix}$ checking is the least-squares soultion with $\vec{\boldsymbol{c}}$, shown below, the distance between the the distance between $\hat{\boldsymbol{b}}$ and $\vec{\boldsymbol{b}}$ is greater i.e. worst, than $\hat{\boldsymbol{b}}$.
+        \begin{align*}
+            ||\vec{\boldsymbol{b}}-A\hat{\boldsymbol{x}}|| &\leq ||\vec{\boldsymbol{b}} - A\vec{\boldsymbol{c}}||\\
+            \left|\left| \begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \end{bmatrix} - \begin{bmatrix}1 & 1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \\ -1 & 1 & -1 \end{bmatrix}\begin{bmatrix}[1.25] \frac{1}{3} \\ \frac{14}{3} \\ -\frac{5}{3} \end{bmatrix} \right|\right| & \leq \left|\left| \begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \end{bmatrix} - \begin{bmatrix}1 & 1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \\ -1 & 1 & -1 \end{bmatrix}\begin{bmatrix}[1.25] 3 \\ 4 \\ 5 \end{bmatrix} \right|\right| \\ 
+            \left|\left| \begin{bmatrix} -2 \\ 2 \\ 2 \\ 0 \end{bmatrix}  \right|\right| & \leq \left|\left|\begin{bmatrix} -4 \\ 6 \\ -4 \\ 10 \end{bmatrix} \right|\right|\\
+            2\sqrt{3} & \leq 2\sqrt{42}
+        \end{align*}
+    \end{enumerate}
+    \tcblower
+    \textbf{Corrected solution for part (iii.)}
+The best approximation that we can find for $\vec{\boldsymbol{b}}$ would be the projection of $\vec{\boldsymbol{b}}$ onto the Col $A$. Since we have shown in (ii.) that the columns are orthogonal, we have the $\operatorname{proj}_{\operatorname{Col}_A} \vec{\boldsymbol{b}}$ gives
+
+\begin{align*}
+\hat{\boldsymbol{b}}=\operatorname{proj}_{\operatorname{Col } A} \vec{\boldsymbol{b}} & =\frac{\vec{\boldsymbol{b}} \cdot \vec{\boldsymbol{a}}_1}{\vec{\boldsymbol{a}}_1 \cdot \vec{\boldsymbol{a}}_1} \vec{\boldsymbol{a}}_1+\frac{\vec{\boldsymbol{b}} \cdot \vec{\boldsymbol{a}}_2}{\vec{\boldsymbol{a}}_2 \cdot \vec{\boldsymbol{a}}_2} \vec{\boldsymbol{a}}_2+\frac{\vec{\boldsymbol{b}} \cdot \vec{\boldsymbol{a}}_3}{\vec{\boldsymbol{a}}_3 \cdot \vec{\boldsymbol{a}}_3} \vec{\boldsymbol{a}}_3 \\
+& =\frac{1}{3}\begin{bmatrix}
+1 \\
+1 \\
+0 \\
+-1
+\end{bmatrix}+\frac{14}{3}\begin{bmatrix}
+1 \\
+0 \\
+1 \\
+1
+\end{bmatrix}+\frac{-5}{3}\begin{bmatrix}
+0 \\
+-1 \\
+1 \\
+-1
+\end{bmatrix}=\begin{bmatrix}
+5 \\
+2 \\
+3 \\
+6
+\end{bmatrix}
+\end{align*}
+
+\textbf{Corrected solution for (iv.)}
+
+Solution: Any vector from the column space will suffice. For example, we can show that $\vec{\boldsymbol{a}}=\begin{bmatrix}3 \\ -2 \\ 5 \\ 6\end{bmatrix}$ is in Col $A$. Computing the distance,
+$$
+\|\vec{\boldsymbol{a}}-\vec{\boldsymbol{b}}\|=\left\|\begin{bmatrix}
+0 \\
+-6 \\
+0 \\
+0
+\end{bmatrix}\right\|=6 \text { and }\|\hat{\boldsymbol{b}}-\vec{\boldsymbol{b}}\|=\left\|\begin{bmatrix}
+2 \\
+-2 \\
+2 \\
+0
+\end{bmatrix}\right\|=\sqrt{12} \approx 3.46
+$$
+\end{tcolorbox}
+\newpage
+
+
+        
+\end{document}

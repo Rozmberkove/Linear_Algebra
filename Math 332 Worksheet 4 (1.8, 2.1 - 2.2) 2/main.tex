@@ -1,0 +1,266 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 4 (\S 1.4 - \S1.5, \S1.7 - \S1.8)} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Problem 1}
+Consider the matrices, $A=\begin{bmatrix}-5 & 2\end{bmatrix}$, and $B=\begin{bmatrix}1 & 0\end{bmatrix}$. Perform the following matrix operations, if possible or indicate that the operation is not possible.
+
+\begin{enumerate}[label = \roman*.]
+    \item $2 A+3 B$
+    \item $A B$
+    \item $A^{T} B$
+\end{enumerate}
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 1 Solutions}]
+\begin{enumerate}[label = \roman*.]
+    \item $2A+3B = 2\begin{bmatrix}-5 & 2\end{bmatrix} + 3\begin{bmatrix}1 & 0\end{bmatrix} = \begin{bmatrix}-10 & 4\end{bmatrix} + \begin{bmatrix}3 & 0\end{bmatrix} = \begin{bmatrix}-7& 4\end{bmatrix}$
+    
+    \item Matrix $A$ has dimensions $\left(1 \times 2 \right)$ and matrix $B$ has dimensions $\left(2 \times 1 \right)$. Due to the fact that the number of columns of matrix $A$ is not equal to the number of rows of matrix $B$, matrix multiplication between $A$ and $B$ is not feasible.
+    
+    \item $A^{T}B = \begin{bmatrix}-5\\ 2\end{bmatrix}\begin{bmatrix}1 & 0\end{bmatrix} = \begin{bmatrix}(-5)(1) & (-5)(0)\\ (2)(1) & (2)(0) \end{bmatrix} = \begin{bmatrix} -5 & 0\\ 2 & 0 \end{bmatrix}$
+\end{enumerate}
+    
+\end{tcolorbox}
+    
+\section{Problem 2}
+Find the inverse of $A=\begin{bmatrix}-5 & 4 \\ 0 & 4\end{bmatrix}$, if it exists.
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 2 Solutions}]
+
+\begin{align*}
+    A^{-1} &= \frac{1}{\operatorname{det} A} \begin{bmatrix} 4 & -4\\ 0 & -5 \end{bmatrix}\\ 
+    &= \frac{1}{(-5)(4)-(4)(0)} \begin{bmatrix} 4 & -4\\ 0 & -5 \end{bmatrix} \\
+    &= \frac{1}{20} \begin{bmatrix} 4 & -4\\ 0 & -5 \end{bmatrix}\\
+    & = \begin{bmatrix} -\frac{1}{5} & \frac{1}{5}\\ 0 & \frac{1}{4} \end{bmatrix}
+\end{align*}
+
+\end{tcolorbox}
+
+\newpage
+
+\section{Problem 3}
+Suppose a $4 \times 7$ matrix $A$ has three pivot columns.
+\begin{enumerate}[label = \roman*.]
+    \item Is $\operatorname{Col} A$ the same as $\mathbb{R}^{3}$?
+    \item What is the dimension of the null space of $A$?
+    \item What is the rank of a $6 \times 8$ matrix whose null space is three dimensional?
+    \item If the rank of a $9 \times 8$ matrix $A$ is 7 , what is the dimension of the solutions space of $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$?
+\end{enumerate}
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 3 Solutions}]
+    \begin{tasks}[label = \roman*.]
+        \item The column space of a $m\times n$ matrix $A$, denoted as $\operatorname{Col} A$, comprises all linear combinations of the columns of $A$. As the column space of $A$ is spanned by its pivot columns, its dimension equals the rank of the matrix, which is 3. Consequently, $\operatorname{Col} A$ forms a subspace of $\mathbb{R}^{3}$, the three-dimensional real coordinate space.
+
+        \item The dimension of the null space for a $m \times n$ matrix $A$, denoted as $\operatorname{dim}(\operatorname{Nul} \, A)$, is determined by the rank-nullity theorem. This theorem is represented as follows: 
+
+        $$\operatorname{dim}(\operatorname{Nul} \, A) + \underbrace{\operatorname{dim}(\operatorname{Col} \, A)}_{\text{Rank of the matrix}} = n$$
+
+        Thus, given that the number of columns of matrix \( A \) is 7 and the rank of \( A \) is 3, the dimension of the null space of matrix \( A \) is 4, indicating there are 4 dimensions in the null space of \( A \).
+
+        \item Given that $\text{dim}(\operatorname{Nul} \, A) = 3 $ and $n = 8$, where $n$ represents the number of columns of matrix $A$, and it is known that the matrix has dimensions $6 \times 8$, we can use the rank-nullity theorem to find the dimension of the column space. Thus, the rank of matrix $A$ is $5$, which indicates the dimension of the column space for the $6 \times 8$ matrix.
+
+        \item The null space of an $m\times n$ matrix $A$, written as $\operatorname{Nul} A$, is the set of all solutions of the homogeneous equation $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$. Thus once again applying the rank-nullity theorem where $\operatorname{dim}(\operatorname{Col} \, A) = 7$ and $n = 8$, where $n$ represents the number of columns of matrix $A$, we can use the rank-nullity theorem to find the dimension of the null space. Thus, the dimension of the solutions space of $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$, is $1$.
+    \end{enumerate}
+\end{tcolorbox}
+\section{Problem 4}
+Prove the following statements using the Invertible Matrix Theorem.
+
+\begin{enumerate}[label = \roman*.]
+    \item If the equation $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ has more than one solution for some $\vec{\boldsymbol{b}} \in \mathbb{R}^{n}$, then the columns of $A$ do not span $\mathbb{R}^{n}$.
+    \item If the equation $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ is inconsistent for some $\vec{\boldsymbol{b}} \in \mathbb{R}^{n}$, then the equation $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ has a non-trivial solution.
+    \item If $A$ is a square matrix with 2 identical columns then $A^{-1}$ does not exist.
+\end{enumerate}
+
+\newpage
+\begin{tcolorbox}[colback=red!5!white,
+colframe=red!75!black,boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,fonttitle=\bfseries,,adjusted title={Invertible Matrix Theorem}]
+    Let $A$ be a square $n\times n$ matrix. Then the following statements are equivalent. That is, for a given $A$, the statements are either \underline{all true} or \underline{all false}.
+    \tcblower
+    \begin{enumerate}[label = \alph*.]
+        \item $A$ is an invertible matrix.
+        \item $A$ is row equivalent to the $n\times n$ identity matrix.
+        \item $A$ has $n$ pivot positions.
+        \item The equation $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{0}}$ has only the trivial solution.
+        \item The columns of $A$ form a linearly independent set.
+        \item The linear transformation $\vec{\mathrm{\boldsymbol{x}}} \mapsto A\vec{\mathrm{\boldsymbol{x}}}$ is one-to-one.
+        \item The equation $A \vec{\mathrm{\boldsymbol{x}}}=\vec{\boldsymbol{b}}$ has at least one solution for each $\vec{\boldsymbol{b}} \in \mathbb{R}^{n}$.
+        \item The columns of $A$ span $\mathbb{R}^{n}$.
+        \item The linear transformation $\vec{\mathrm{\boldsymbol{x}}} \mapsto A\vec{\mathrm{\boldsymbol{x}}}$ maps $\mathbb{R}^{n}$ onto $\mathbb{R}^{n}$.
+        \item There is an $n\times n$ matrix $C$ such that $CA=I$.
+        \item There is an $n\times n$ matrix $D$ such that $AD=I$.
+        \item $A^{T}$ is an invertible matrix.
+        %%\item The columns of $A$ form a basis of $\mathbb{R}^{n}$
+        %%\item $\operatorname{col} A =\mathbb{R}^{n}$
+        %%\item $\operatorname{dim}(\operatorname{col} A) = n$
+        %%\item rank $A = n$
+        %%\item $\operatorname{nul} A = \{0\}$
+        %%\item $\operatorname{dim} (\operatorname{nul} A) = 0$
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 4 Solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item If the equation $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ has multiple solutions, it indicates the presence of free variables in the solution. This suggests that matrix $A$ lacks a pivot in every column, implying fewer than $n$ pivot positions. Therefore, according to the invertible matrix theorem, the columns of $A$ do not span $\mathbb{R}^n$.
+        
+        \item If the equation $A\vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ is inconsistent, meaning there are no solutions for certain $\vec{\boldsymbol{b}} \in \mathbb{R}^n$, it indicates that the row-reduced echelon form of the augmented matrix $[A | {\boldsymbol{b}}]$ contains at least one row where all entries are zero on the left side, while the corresponding entry on the right side (in $\vec{b}$) is non-zero. These zero entries correspond to free variables, which can be assigned non-zero values in the equation $A \vec{\boldsymbol{x}} = \vec{\boldsymbol{0}}$ to obtain a solution other than the trivial one. 
+        
+        \item Since $A$ is a square matrix with 2 identical columns then the columns of $A$ do not form a linearly independent set, which logical implies that the system then the system has free variables then $A$ has less than $n$ pivots and thus can not be an invertible matrix, $A^{-1}$ does not exist.
+    \end{enumerate}
+\end{tcolorbox}
+\newpage
+
+\section{Problem 5}
+Suppose $A, B$ and $X$ are $n \times n$ matrices with $A, X$, and $A-A X$ invertible, and suppose
+
+$$(A-A X)^{-1}=X^{-1} B$$
+
+\begin{enumerate}[label = \roman*.]
+    \item Explain why $B$ is invertible.
+    \item Solve the equation above for $X$. If you need to invert a matrix, explain why that matrix is invertible.
+\end{enumerate}
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 5 Solutions}]
+The product of $n\times n$ invertible matrices is invertible, and the inverse is the product of their inverses in the reverse order.
+\tcblower
+
+    \begin{enumerate}[label = \roman*.]
+        \item The expression $(A - AX)^{-1} = X^{-1}B$ can be rewritten as $X(A - AX)^{-1} =B$ since both matrices $X$ and $A - AX$ are invertible. According to the theorem mentioned above, when the product of invertible $n \times n$ matrices, $X$ and $A - AX$, is taken, the resulting product matrix $B$ is invertible.
+        \item In the subsequent reduction, $I$ symbolizes the $n \times n$ identity matrix. In step (1), the inversion of the matrix $X$ occurs by virtue of its definition as invertible.In step (3), the inversion of the matrix $(A-AX)$ occurs by virtue of its definition as invertible. In step (7) the inversion of the matrix $(BA+I)$ is invertible since it is defined as the product of three invertible matrices $I+BA = BAX^{-1}$. 
+            \begin{align}
+                X(A-AX)^{-1} &= XX^{-1}B\\
+                X(A-AX)^{-1} &= B\\
+                X &= B(A-AX)\\
+                X &= BA - BAX\\
+                BAX+X&=BA\\
+                (BA+I)X &= BA\\
+                X&=(BA+I)^{-1}BA
+            \end{align}
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section{Problem 6}
+It can be shown that the matrix $A$ given below left has the reduced echelon form given by $B$ below right.
+
+$$
+A=\begin{bmatrix}
+1 & -2 & 9 & 5 & 4 \\
+1 & -1 & 6 & 5 & -3 \\
+-2 & 0 & -6 & 1 & -2 \\
+4 & 1 & 9 & 1 & -9
+\end{bmatrix} \rightsquigarrow
+\begin{bmatrix}
+1 & -2 & 9 & 5 & 4 \\
+0 & 1 & -3 & 0 & -7 \\
+0 & 0 & 0 & 1 & -2 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix} \rightsquigarrow B=
+\begin{bmatrix}
+1 & 0 & 3 & 0 & 0 \\
+0 & 1 & -3 & 0 & -7 \\
+0 & 0 & 0 & 1 & -2 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+$$
+\begin{enumerate}[label = \roman*.]
+    \item Find a basis for and state the dimension of $\operatorname{Col} A$.
+    \item Find a basis for and state the dimension of $\operatorname{Nul} A$.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm, width=(.9\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 6 Solutions}]
+Let $H$ be a subspace of a vector space $V$. An indexed set of vectors $\mathcal{B} = \{\boldsymbol{b}_{1}\cdots \boldsymbol{b}_{n}\}$ in $V$ is a basis for $H$ if $\mathcal{B}$ is a linearly independent set, and the subspace spanned by $\mathcal{B}$ coincides with $H$; that is, $H = \operatorname{Span} \{\boldsymbol{b}_{1}, \cdots, \boldsymbol{b}_{p}\}$.
+
+\begin{itemize}
+    \item $A$ basis for the column space of a matrix $A$ is the columns of $A$ corresponding to columns of $\operatorname{rref}(A)$ that contain leading ones.
+    \item The solution to $A\vec{\boldsymbol{x}} = \vec{\boldsymbol{b}}$ (which can be easily obtained from $\operatorname{rref}(A)$ by augmenting it with a column of zeros) will be an arbitrary linear combination of vectors. Those vectors form a basis for $\operatorname{Nul} A$.
+\end{itemize}
+\tcblower
+\begin{enumerate}[label = \roman*.]
+    \item $$\left\{\begin{bmatrix}1\\1\\-2\\4 \end{bmatrix},\begin{bmatrix}-2\\-1\\0\\1 \end{bmatrix},\begin{bmatrix}5\\5\\1\\1 \end{bmatrix} \right\} \Longrightarrow \underbrace{\operatorname{dim}(\operatorname{Col} \, A)}_{\text{Rank of the matrix}}  = 3 $$
+    \item 
+        \begin{align*}
+            x_{1}+3x_{3} &= 0\\
+            x_{2}-3x_{3}-7x_{5} &=0\\
+            x_{4}-2x_{5} &=0
+        \end{align*}
+        
+ $$\left\{\begin{bmatrix}-3\\3\\1\\0\\0 \end{bmatrix},\begin{bmatrix}0\\7\\0\\2\\1 \end{bmatrix} \right\} \Longrightarrow \operatorname{dim}(\operatorname{Nul} \, A) = 2 $$
+\end{enumerate}
+\end{tcolorbox}
+
+\end{document}
