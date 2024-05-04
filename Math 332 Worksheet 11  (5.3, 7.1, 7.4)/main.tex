@@ -1,0 +1,403 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=1.25cm}
+\usepackage{amsthm}
+\usepackage[most]{tcolorbox}
+
+\pgfplotsset{compat=1.18}
+
+\usepackage{hyperref}
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\setlength{\tabcolsep}{10 pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\newcommand{\mymk}[1]{%
+  \tikz[baseline=(char.base)]\node[anchor=south west, draw,rectangle,red, rounded corners, inner sep=2pt, minimum size=7mm,
+    text height=2mm](char){\ensuremath{#1}} ;}
+
+\newcommand{\xvec}{\vec{\boldsymbol{x}}}
+\newcommand{\vvec}{\vec{\boldsymbol{v}}}
+\newcommand{\uvec}{\vec{\boldsymbol{u}}}
+
+\usepackage{ifthen}
+\newif\ifprintanswers
+\printanswerstrue % Uncomment to show answers
+
+% Create a True False question format
+\newcommand*{\TrueFalse}[1]{%
+\ifprintanswers
+    \ifthenelse{\equal{#1}{T}}{%
+        \textbf{TRUE}\hspace*{14pt}False
+    }{
+        True\hspace*{14pt}\textbf{FALSE}
+    }
+\else
+    {True}\hspace*{20pt}False
+\fi
+} 
+%% The following code is based on an answer by Gonzalo Medina
+%% https://tex.stackexchange.com/a/13106/39194
+\newlength\TFlengthA
+\newlength\TFlengthB
+\settowidth\TFlengthA{\hspace*{1.16in}}
+\newcommand\TFQuestion[2]{%
+    \setlength\TFlengthB{\linewidth}
+    \addtolength\TFlengthB{-\TFlengthA}
+    \parbox[t]{\TFlengthA}{\TrueFalse{#1}}\parbox[t]{\TFlengthB}{#2}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 11  (\S5.3, \S7.1, \S7.4))} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Problem 1}
+Determine if the following statements are True or False.
+
+
+\begin{enumerate}[label = \alph*.)]
+\item \TFQuestion{T}{The matrix $\begin{bmatrix}-3 & 4 \\ 4 & 3\end{bmatrix}$ is orthogonally diagonalizable.}
+\item \TFQuestion{T}{The matrix $\begin{bmatrix}-3 & 4 \\ 4 & 3\end{bmatrix}$ is diagonalizable.}
+\item \TFQuestion{F}{The algorithm to compute the singular value decomposition for a given matrix will fail when taking the square root of a negative eigenvalue.}
+\item \TFQuestion{T}{Every matrix has a singular value decomposition.}
+\item  \TFQuestion{F}{A matrix is diagonalizable if it is invertible.}
+
+
+\end{enumerate}
+
+\section{Problem 2}
+Find the singular values of $A=\begin{bmatrix}-3 & 2 \\ 2 & -3 \\ 2 & 3\end{bmatrix}$.
+
+\begin{tcolorbox}[boxrule=1mm, width=(\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 2 Solutions}]
+    $$A^{T}A = \begin{bmatrix}-3 & 2 & 2 \\ 2 & -3 &3\end{bmatrix}\begin{bmatrix}-3 & 2 \\ 2 & -3 \\ 2 & 3\end{bmatrix} = \begin{bmatrix}17 & -6 \\ -6 & 22 \end{bmatrix}$$
+
+    \begin{align*}
+        0 &= \operatorname{det} \left(A^{T}A - I\lambda\right)\\
+        &= \begin{vmatrix}17-\lambda & -6 \\ -6 & 22- \lambda\end{vmatrix}\\
+        &= (13-\lambda)\begin{vmatrix}13 - \lambda & -5\\ -5 & -5\end{vmatrix} + 12\begin{vmatrix} -12 & -5\\ 0 & 13-\lambda\end{vmatrix}\\
+        & = (17-\lambda)(22-\lambda)-36\\
+        & = \lambda^2 -39\lambda+338\\
+        & = (\lambda-13)(\lambda - 26)\\
+        & \Rightarrow \lambda_{1}= 26\quad \text{and} \quad \lambda_{2} = 13\\
+        & \boxed{\Rightarrow \sigma_{1} = \sqrt{26} \quad \text{and} \quad \sigma_{2} = \sqrt{13}}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+\section{Problem 3}
+Consider the following matrix.
+
+$$
+A=\begin{bmatrix}
+1 & 0 & 2 \\ 0 & -1 & -2 \\ 2 & -2 & 0
+\end{bmatrix}
+$$
+
+Find an orthogonal matrix $Q$ and a diagonal matrix $D$ such $A=Q D Q^{T}$.
+
+\begin{tcolorbox}[boxrule=1mm, width=(\linewidth),before=\hfill,after=\hfill,adjusted title={Problem 3 Solutions}]
+    \begin{align*}
+       0 &= \operatorname{det} \left(A - I\lambda\right)\\
+        &= \begin{vmatrix}1 - \lambda & 0 & 2 \\ 0 & -1- \lambda & -2 \\ 2 & -2 & - \lambda\end{vmatrix}\\
+        &= (1-\lambda)\begin{vmatrix}1 - \lambda & -2\\ -2 & -\lambda\end {vmatrix} + 2\begin{vmatrix} 0 & -1-\lambda\\ 2 & -2\end{vmatrix}\\
+        & = (1-\lambda)\left(\lambda^2+\lambda-4\right)+ 4\lambda +4\\
+        & = 9\lambda - \lambda^3\\
+        & = -\lambda\left(\lambda-3\right)\left(\lambda+3\right)\\
+        & \Rightarrow \lambda_{1}= -3; \quad \lambda_{2} = 3; \quad \text{and} \quad \lambda_{3}=0
+\end{align*}
+        \begin{minipage}{0.333\textwidth}
+            $$\underbrace{\begin{bmatrix} 4 & 0 & 2 \\ 0 & 2 & -2 \\ 2 & -2 & 3 \end{bmatrix}}_{A-\lambda_{1}I}\leadsto \begin{bmatrix} 2 & 0 & 1 \\ 0 & -1 & 1 \\ 0 & 0 & 0\end{bmatrix}$$
+            $$\begin{aligned}
+                 x_{1} &= -\frac{1}{2}x_{2}\\
+                    x_{2} &= x_{3}\\
+                    x_{3}&=x_{3}
+        \end{aligned}\leadsto \vec{\boldsymbol{v}}_1 = \begin{bmatrix}-1\\2\\2\end{bmatrix}$$
+        $$\vec{\boldsymbol{u}}_{1} = \frac{\vec{\boldsymbol{v}}_{1}}{\|\vec{\boldsymbol{v}}_{1}\|} =\frac{1}{3}\begin{bmatrix}-1\\2\\2\end{bmatrix}=  \begin{bmatrix}[1.25] -\frac{1}{3}\\ \frac{2}{3} \\ \frac{2}{3}\end{bmatrix}$$
+         \end{minipage}%
+         \begin{minipage}{0.333\textwidth}
+            $$\underbrace{\begin{bmatrix} -2 & 0 & 2 \\ 0 & -4 & -2 \\ 2 & -2 & -3 \end{bmatrix}}_{A-\lambda_{2}I}\leadsto \begin{bmatrix} 1 & 0 & -1 \\ 0 & 2 & 1 \\ 0 & 0 & 0\end{bmatrix}$$
+            $$\begin{aligned}
+                 x_{1} &= x_{3}\\
+                    x_{2} &= -\frac{1}{2}x_{3}\\
+                    x_{3}&=x_{3}
+        \end{aligned} \leadsto \vec{\boldsymbol{v}}_2 = \begin{bmatrix}2\\-1\\2\end{bmatrix}$$
+        $$\vec{\boldsymbol{u}}_{2} = \frac{\vec{\boldsymbol{v}}_{2}}{\|\vec{\boldsymbol{v}}_{2}\|} =\frac{1}{3}\begin{bmatrix}2\\-1\\2\end{bmatrix}= \begin{bmatrix}[1.25] \frac{2}{3}\\ -\frac{1}{3} \\ \frac{2}{3}\end{bmatrix}$$
+         \end{minipage}%
+         \begin{minipage}{0.333\textwidth}
+            $$\underbrace{\begin{bmatrix} 1 & 0 & 2 \\ 0 & -1 & -2 \\ 2 & -2 & 0 \end{bmatrix}}_{A-\lambda_{3}I}\leadsto \begin{bmatrix} 1 & 0 & 2 \\ 0 & 1 & 2 \\ 0 & 0 & 0\end{bmatrix}$$
+            $$\begin{aligned}
+                 x_{1} &= -2x_{3}\\
+                    x_{2} &= -2x_{3}\\
+                    x_{3}&=x_{3}
+        \end{aligned} \leadsto \vec{\boldsymbol{v}}_3 = \begin{bmatrix}-2\\-2\\1\end{bmatrix}$$
+         $$\vec{\boldsymbol{u}}_{3} = \frac{\vec{\boldsymbol{v}}_{3}}{\|\vec{\boldsymbol{v}}_{3}\|} =\frac{1}{3}=\begin{bmatrix}-2\\-2\\1\end{bmatrix} \begin{bmatrix}[1.25] -\frac{2}{3}\\ -\frac{2}{3} \\ \frac{1}{3}\end{bmatrix}$$
+         \end{minipage}
+         $$Q = \begin{bmatrix}[1.25]
+            -\frac{1}{3} & \frac{2}{3} & -\frac{2}{3} \\
+            \frac{2}{3} & -\frac{1}{3} & -\frac{2}{3} \\
+            \frac{2}{3} & \frac{2}{3} & \frac{1}{3}
+            \end{bmatrix} \quad Q^{T} = \begin{bmatrix}[1.25]
+            -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+            \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+            -\frac{2}{3} & -\frac{2}{3} & \frac{1}{3}
+            \end{bmatrix}$$
+            $$A=QDQ^{T}=\boxed{\begin{bmatrix}[1.25]
+            -\frac{1}{3} & \frac{2}{3} & -\frac{2}{3} \\
+            \frac{2}{3} & -\frac{1}{3} & -\frac{2}{3} \\
+            \frac{2}{3} & \frac{2}{3} & \frac{1}{3}
+            \end{bmatrix} \begin{bmatrix} -3 & 0 & 0 \\ 0 & 3 & 0\\ 0 & 0 & 0\end{bmatrix}\begin{bmatrix}[1.25]
+            -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+            \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+            -\frac{2}{3} & -\frac{2}{3} & \frac{1}{3}
+            \end{bmatrix}}$$
+
+\end{tcolorbox}
+\newpage
+\section{Problem 4}
+Consider $A=\begin{bmatrix}4 & 0 & -2 \\ 2 & 5 & 4 \\ 0 & 0 & 5\end{bmatrix}$. The eigenspace of $A$ with eigenvalue $\lambda=4$ is span $\left\{\begin{bmatrix}-1 \\ 2 \\ 0\end{bmatrix}\right\}$ and the eigenspace of $A$ with eigenvalue $\lambda=5$ is span $\left\{\begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix},\begin{bmatrix}-2 \\ 0 \\ 1\end{bmatrix}\right\}$.
+
+\begin{enumerate}[label = \alph*.)]
+    \item Is $A$ orthogonally diagonalizable? Is $A$ diagonalizable? Explain your reasoning for each response.
+    
+    \item Show that the basis for the eigenspace of $A$ with $\lambda=5$ is already an orthogonal set. 
+    
+    \item Show that neither pairing of eigenvectors from different eigenspaces are orthogonal. 
+    
+    \item Here is a bad idea, but please do it anyway. Apply the Gram-Schmidt to the set of all three eigenvectors to create an orthogonal set of vectors. Keep the basis for the eigenspace of $A$ with eigenvalue $\lambda=5$ the same since it's already an orthogonal set. Only change the eigenvector corresponding to eigenvalue of $\lambda=4$.
+    
+    \item Use the definition of eigenvector to show that the resulting vector from part (d) is no longer an eigenvector.
+    
+    \item When are we allowed to use Gram-Schmidt to create an orthonormal set of eigenvectors?
+\end{enumerate}
+
+\newpage
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 4 solutions}]
+    \begin{theorem}[The Diagonalization Theorem]
+        An $n\times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.
+    \end{theorem}
+    \begin{theorem}
+        An $n\times n$ matrix $A$ is orthogonally diagonalizable if and only if $A$ is a symmetric matrix.
+    \end{theorem}
+    \tcblower
+
+    Let $\vvec_{1} = \begin{bmatrix}0\\ 1\\ 0 \end{bmatrix}$; $\vvec_{2} = \begin{bmatrix}-2\\ 0\\ 1 \end{bmatrix}$; and $\vvec_{3} = \begin{bmatrix}-1\\ 2\\ 0 \end{bmatrix}$
+
+    \begin{enumerate}[label = \alph*.)]
+        \item Matrix \( A \) cannot be orthogonally diagonalized due to Theorem 4.2, as it lacks symmetry, i.e., \( A \neq A^T \). However, a \( 3 \times 3 \) matrix \( A \) can be diagonalized according to Theorem 4.1 because it possesses three linearly independent eigenvectors, matching the dimensionality of the square matrix \( A \).
+        \item 
+        $$\vvec_{1} \cdot \vvec_{2} = \vvec_{1}^{T}\vvec_{2} = \begin{bmatrix}0& 1& 0 \end{bmatrix}\begin{bmatrix}-2\\ 0\\ 1 \end{bmatrix} = (0)(-2)+(1)(0)+(0)(1) = 0 $$
+        \item Vectors are orthogonal when $\vvec_{n} \cdot \vvec_{k} = 0$
+        $$\vvec_{1} \cdot \vvec_{3} = \vvec_{1}^{T}\vvec_{3} = \begin{bmatrix}0& 1& 0 \end{bmatrix}\begin{bmatrix}-1\\ 2\\ 0 \end{bmatrix} = (0)(-1)+(1)(2)+(0)(0) = 2 $$
+        $$\vvec_{2} \cdot \vvec_{3} = \vvec_{2}^{T}\vvec_{3} = \begin{bmatrix}-2& 0& 1 \end{bmatrix}\begin{bmatrix}-1\\ 2\\ 0 \end{bmatrix} = (-2)(-1)+(0)(2)+(1)(0) = 2 $$
+        \item Let $\uvec_{1} = \vvec_{1} = \begin{bmatrix}0\\ 1\\ 0 \end{bmatrix}$ and $\uvec_{2} = \vvec_{2} - \frac{\vvec_{2} \cdot \uvec_{1}}{\uvec_{1} \cdot \uvec_{1}} \uvec_{1}= \begin{bmatrix}-2\\ 0\\ 1 \end{bmatrix}$
+             $$\uvec_{3} = \vvec_{3}-\frac{\vvec_{3} \cdot \uvec_{1}}{\uvec_{1} \cdot \uvec_{1}} - \frac{\vvec_{3} \cdot \uvec_{2}}{\uvec_{2} \cdot \uvec_{2}} = \begin{bmatrix}-1\\ 2\\ 0 \end{bmatrix} - \frac{2}{1}\begin{bmatrix}0\\ 1\\ 0 \end{bmatrix} - \frac{2}{5} \begin{bmatrix}-2\\ 0\\ 1 \end{bmatrix}= \begin{bmatrix}[1.25]-\frac{1}{5}\\ 0\\ -\frac{2}{5} \end{bmatrix}$$
+             
+            $$\left\{\begin{bmatrix}0\\ 1\\ 0 \end{bmatrix},\begin{bmatrix}-2\\ 0\\ 1 \end{bmatrix},\begin{bmatrix}[1.25]-\frac{1}{5}\\ 0\\ -\frac{2}{5} \end{bmatrix} \right\}$$
+        \item 
+        $$A\uvec_{3} \neq \lambda \uvec_{3}\Longrightarrow \begin{bmatrix}4 & 0 & -2 \\ 2 & 5 & 4 \\ 0 & 0 & 5\end{bmatrix}\begin{bmatrix}[1.25]-\frac{1}{5}\\ 0\\ -\frac{2}{5} \end{bmatrix} \neq 5 \begin{bmatrix}[1.25]-\frac{1}{5}\\ 0\\ -\frac{2}{5} \end{bmatrix} \Longrightarrow \begin{bmatrix}0\\ -2\\ -2 \end{bmatrix} \neq \begin{bmatrix}-1\\ 0\\ -2 \end{bmatrix}$$
+        \item Gram-Schmidt can only be used to create an orthonormal set of eigenvectors within a single eigenspace. 
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section{Problem 5}
+Consider the singular value decomposition (rounded to two decimal places):
+
+$$
+A=U \Sigma V^{T}=\begin{bmatrix}
+-0.68 & 0.73 & 0 \\
+-0.66 & -0.61 & 0.45 \\
+-0.33 & -0.30 & -0.89
+\end{bmatrix}\begin{bmatrix}
+6.61 & 0 & 0 & 0 \\
+0 & 1.82 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}\begin{bmatrix}
+-0.80 & -0.56 & 0 & -0.21 \\
+-0.46 & 0.37 & 0 & 0.80 \\
+-0.37 & 0.74 & 0 & -0.56 \\
+0 & 0 & -1 & 0
+\end{bmatrix}
+$$
+
+\begin{enumerate}[label = \alph*.)]
+    \item What is the rank of the matrix $A$?
+    \item What are the dimensions of the columns space of $A$ and the null space of $A$?
+    \item Compute the best rank-1 approximation to the matrix $A$. The numbers are not nice, so you should use a calculator, but please show what numbers/vectors/matrices you used to make your calculation. You can also round your resulting matrix to 2 decimal places.
+    \item The relative energy of the rank- $K$ approximation in part (c) is given by $E=\frac{\sum_{i=1}^{K} \sigma_{i}^{2}}{\sum_{i=1}^{r} \sigma{i}^{2}}$, where $r$ is the rank of the matrix $A$. Compute the relative energy of your approximation.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 5 solutions}]
+    \begin{theorem}[Bases for Fundamental Subspaces] Given an SVD for an $m\times n$ matrix $A$, let $\uvec_1, \ldots, \uvec_m$ be the left singular vectors, $\vvec_1, \ldots, \vvec_n$ the right singular vectors and $\sigma_1, \ldots, \sigma_n$ the singular values, and let $r$ be the rank of $A$. As an extention, $ \left\{\uvec_1, \ldots, \uvec_r\right\}$ is an orthonormal basis for $\operatorname{Col} A$. It follows that the last right singular vectors, $\{\vvec_{r+1},\ldots \vvec_{n}\}$ provide an orthonormal basis for the null space of $A$.
+    \end{theorem}
+    \tcblower
+    \begin{enumerate}[label = \alph*.)]
+        \item The rank of a singular value a singular value decomposition is the number of non-zero singular values, i.e. $\operatorname{rank} \left(A\right) = 2$ for $A_{3\times 4}$.
+        \item 
+    $$\operatorname{Col}(A) = \operatorname{span}\left\{\begin{bmatrix} -0.68 \\ -0.66 \\ -0.33 \end{bmatrix}, \begin{bmatrix} 0.73 \\ -0.61 \\ -0.30 \end{bmatrix},\right\} \leadsto \operatorname{dim}\left(\operatorname{Col}(A)\right) = 2$$
+     
+    $$\operatorname{Nul}(A) = \operatorname{span}\left\{\begin{bmatrix} -0.37 \\ 0.74 \\ 0 \\ -0.56 \end{bmatrix},\begin{bmatrix} 0 \\ 0 \\ -1 \\ 0 \end{bmatrix}\right\} \leadsto \operatorname{dim}\left(\operatorname{Nul}(A)\right) = 2$$
+
+    \item 
+    
+    $$A_{\text{rank-1}} = \sigma_{1} \uvec_{1}\vvec^{T}_{1} = 6.11 \begin{bmatrix}-0.68\\ -0.66\\-0.33\end{bmatrix}\begin{bmatrix}-0.80 & -0.56 & 0 & -0.21\end{bmatrix} = \begin{bmatrix}
+ 3.32384 & 2.32669 & 0. & 0.872508 \\
+ 3.22608 & 2.25826 & 0. & 0.846846 \\
+ 1.61304 & 1.12913 & 0. & 0.423423 \\
+\end{bmatrix}$$
+\item Let $K=1$ and $r=1$ then $E = \frac{\sum_{i=1}^{K} \sigma_{i}^{2}}{\sum_{i=1}^{r} \sigma{i}^{2}} = \frac{\sigma_{1}^{2}}{\sigma_{1}^2 + \sigma_{2}^2 + \sigma_{3}^2+\sigma_{4}^2} = \frac{(6.61)^2}{(6.61)^2+ (1.82)^2} = \frac{436921}{470045} \approx 0.93$
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section{Problem 6}
+Suppose 7 users give ratings to 5 different movies on a 0-5 scale. Each row corresponds to a different user, and each column corresponds to a different movie. The movie-to-user matrix is
+
+$$
+M=\begin{bmatrix}
+1 & 1 & 1 & 0 & 0 \\
+3 & 4 & 3 & 0 & 0 \\
+4 & 4 & 4 & 0 & 0 \\
+5 & 4 & 5 & 0 & 0 \\
+0 & 2 & 0 & 4 & 4 \\
+0 & 0 & 0 & 5 & 5 \\
+0 & 1 & 0 & 3 & 4
+\end{bmatrix}
+$$
+
+Hopefully you noticed that there is a lot of obvious structure inside $M$. The first three movies were action movies and the last two movies were romance movies. The first 4 users tend to like action movies and not romance movies, and the last three users tend to like romance movies but not action movies. This will give you automatic intuition to what the SVD will tell us when the structure in a movie-to-user matrix is not quite so obvious. The singular value decomposition is given by 
+
+\begin{align*}
+U&=\begin{bmatrix}
+-0.1369 & -0.0343 & -0.0049 & 0.0026 & 0.9900 & -0.0000 & -0.0000 \\
+-0.4579 & -0.1043 & -0.4859 & 0.0792 & -0.0696 & 0.2632 & -0.6804 \\
+-0.5478 & -0.1372 & -0.0197 & 0.0102 & -0.0807 & 0.5371 & 0.6210 \\
+-0.6377 & -0.1700 & 0.4466 & -0.0588 & -0.0917 & -0.5877 & -0.0885 \\
+-0.1869 & 0.5293 & -0.5182 & 0.3844 & -0.0111 & -0.4254 & 0.2959 \\
+-0.1159 & 0.6652 & 0.5302 & 0.3016 & 0.0089 & 0.3404 & -0.2367 \\
+-0.1286 & 0.4664 & -0.1203 & -0.8669 & 0.0000 & 0.0000 & 0.0000
+\end{bmatrix}\\
+\Sigma&=\begin{bmatrix}
+12.3812 & 0 & 0 & 0 & 0 \\
+0 & 10.3132 & 0 & 0 & 0 \\
+0 & 0 & 1.7223 & 0 & 0 \\
+0 & 0 & 0 & 0.6140 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix} \\
+V&=\begin{bmatrix}
+-0.5565 & -0.1693 & 0.4015 & -0.0212 & -0.7071 \\
+-0.5825 & -0.0151 & -0.8115 & 0.0440 & 0.0000 \\
+-0.5565 & -0.1693 & 0.4015 & -0.0212 & 0.7071 \\
+-0.1384 & 0.6635 & 0.1262 & 0.7244 & 0.0000 \\
+-0.1487 & 0.7087 & 0.0564 & -0.6873 & -0.0000
+\end{bmatrix}
+\end{align*}\footnote{Note this is $V$ not $V^{T}$.}
+
+\begin{enumerate}[label = \alph*.)]
+    \item  What is the rank of $M$?
+    
+    \item  If you wanted to approximate $M$ using a truncation of the singular value decomposition expansion
+     $$M \approx \sigma_{1} \vec{u}_{1} \vec{v}_{1}^{T}+\cdots+\sigma_{K} \vec{u}_{k} \vec{v}_{K}^{T}$$ how many terms in the series would you use? Justify your choice \footnote{You do not need to make the approximation. Just explain how many terms you'd use and why you would choose that many.}.
+     
+     \item The relative energy of the approximation in part (b) is given by $E=\frac{\sum_{i=1}^{K} \sigma_{i}^{2}}{\sum_{i=1}^{r} \sigma_{i}^{2}}$, where $r$ is the rank of the matrix $M$. Compute the relative energy of your approximation. You can use this as your justification in part (b) if you'd like.
+\end{enumerate}
+
+\newpage
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 6 solutions}]
+    \begin{enumerate}[label = \alph*.)]
+        \item The rank of a singular value a singular value decomposition is the number of non-zero singular values, i.e. $\operatorname{rank} \left(M\right) = 4$ for $M_{7\times 5}$.
+        \item  To approximate \( M \) using the truncated Singular Value Decomposition (SVD), one aims to select the number of terms that maximizes the relative energy of the approximation, which corresponds to capturing most of the energy of the matrix. This maximization occurs when \( K = r \), where \( K \) is the number of terms in the series and \( r = \operatorname{rank}(M) \). Given that the rank of \( M \) is 4, the first 4 non-zero singular values contribute significantly to the energy of \( M \) as \( \sigma_{i} \neq 0 \). In other words, since there are only 4 non-zero singular values \( \sigma_{i} \) where \( i > r \), terms beyond these 4 produce zeroed out contributions in the series. Therefore, using all 4 terms in the SVD series would effectively capture the essential structure of \( M \).
+        \item Let $K=4$ and $r=4$ then $$E = \frac{\sum_{i=1}^{K} \sigma_{i}^{2}}{\sum_{i=1}^{r} \sigma{i}^{2}} = \frac{\sigma_{1}^2 + \sigma_{2}^2 + \sigma_{3}^2+\sigma_{4}^2}{\sigma_{1}^2 + \sigma_{2}^2 + \sigma_{3}^2+\sigma_{4}^2} = \frac{(12.3812)^2 + (10.3132)^2+(1.7223)^2+(0.6140)^2}{(12.3812)^2 + (10.3132)^2+(1.7223)^2+(0.6140)^2} =  1.0$$
+    \end{enumerate}
+\end{tcolorbox}
+\end{document}
+

@@ -1,0 +1,343 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=1.25cm}
+\usepackage{amsthm}
+\usepackage[most]{tcolorbox}
+
+\pgfplotsset{compat=1.18}
+
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\setlength{\tabcolsep}{10 pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 8 (\S6.5 - \S6.8)} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Introduction}
+Recall from class that the Evaluation Inner Product is defined as:
+
+For polynomials in $\mathbb{P}_{n}$,
+
+$$\vec{\boldsymbol{p}}=p(x)=a_{0}+a_{1} x+\cdots+a_{n} x^{n} \quad \text {and}\quad \vec{\boldsymbol{q}}=q(x)=b_{0}+b_{1} x+\cdots+b_{n} x^{n}$$
+
+if $x_{0}, x_{1}, \ldots, x_{n}$ are distinct real numbers (called sample points), then
+
+$$\left\langle p, q\right\rangle=p\left(x_{0}\right) q\left(x_{0}\right)+p\left(x_{1}\right) q\left(x_{1}\right)+\cdots+p\left(x_{n}\right) q\left(x_{n}\right)$$
+
+defines an inner product on $\mathbb{P}_{n}$ called the Evaluation Inner Product.
+
+\section{Problem 1}
+Using the sample points, $x_{i}=-1,0,1$ and the evaluation inner product,
+
+\begin{enumerate}[label = \roman*.]
+    \item Compute $\langle p, q\rangle$, where $p(t)=4+t$ and $q(t)=5-4 t^{2}$.
+    \item Compute $\|p\|$, where $p(t)=3 t-t^{2}$.
+    \item Compute $\|q\|$, where $q(t)=3+2 t^{2}$.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 1 solutions}]
+
+\begin{enumerate}[label = \roman*.]
+    \item $\langle p, q\rangle=p\left(-1\right)q\left(-1\right)+p\left(0\right)q\left(0\right)+p\left(1\right)q\left(1\right) = 28$
+    \item $\|p\| = \sqrt{\langle p, p\rangle} = \sqrt{p\left(-1\right)p\left(-1\right)+p\left(0\right)p\left(0\right)+p\left(1\right)p\left(1\right)}= \sqrt{20} = 2 \sqrt{5}$
+    \item $\|q\| = \sqrt{\langle q, q\rangle} = \sqrt{q\left(-1\right)q\left(-1\right)+q\left(0\right)q\left(0\right)+q\left(1\right)q\left(1\right)} = \sqrt{59}$
+\end{enumerate}
+        
+\end{tcolorbox}
+
+\section{Problem 2}
+For each of the following statements, indicate if the statement is \textbf{True} or \textbf{False}.\footnote{If a statement is not always true, then it can be considered a false statement.}
+
+\begin{enumerate}[label = \roman*.]
+    \item The general least-squares problem for $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$, is to find a vector, $\vec{\boldsymbol{x}}$, that makes $A \vec{\boldsymbol{x}}$ as close as possible to $\vec{\boldsymbol{b}}$.
+    \item If $\vec{\boldsymbol{b}}$ is in the column space of $A$, then every solution of $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ is a least-squares solution.
+    \item If the columns of $A$ are linearly independent, then the equation $A \vec{\boldsymbol{x}}=\vec{\boldsymbol{b}}$ has exactly one least-squares solution.
+    \item If $\langle x, y\rangle=-\langle y, x\rangle$ in some inner product space, then $x$ is orthogonal to $y$.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 2 solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item \textbf{True}. By definition, the least squares problem is to find $\hat{\boldsymbol{x}}$ such that $|A\hat{\boldsymbol{x}} - \vec{\boldsymbol{b}}| \leq |A\vec{\boldsymbol{x}} - \vec{\boldsymbol{b}}|$ for all $\vec{\boldsymbol{x}}\in\mathbb{R}^n$. Put in words, this translates to finding a vector $\hat{\boldsymbol{x}}$ that makes $A\vec{\boldsymbol{x}}$ (which is in the column space of $A$) as close to $\vec{\boldsymbol{b}}$ as possible.
+        
+        \item \textbf{True}. If $\vec{\boldsymbol{b}}$ is in the column space of matrix $A$, then there exists at least one soultion such that $A\hat{\boldsymbol{x}} = \vec{\boldsymbol{b}}$. Consequently, each solution to the system $A\vec{\boldsymbol{x}} = \vec{\boldsymbol{b}}$ minimizes the magnitude $|A\vec{\boldsymbol{x}} - \vec{\boldsymbol{b}}|$ (bringing it to zero), hence constituting a least squares solution.
+        
+        \item \textbf{True}. Recall that the solution problem is the solution of $A\vec{\boldsymbol{x}} = \hat{\boldsymbol{b}}$ where $\hat{\boldsymbol{b}}$ is the projection of $\vec{\boldsymbol{b}}$ in the column space. Since the columns of $A$ are linearly independent there exist an unique solution, hence the least squares solution is also unique. 
+        
+        \item \textbf{True}. In some inner product space $x$ and $y$ are only orthogonal when $\langle x, y\rangle = \langle y, x\rangle = 0$. 
+    \end{enumerate}
+\end{tcolorbox}
+
+\section{Problem 3}
+It can be shown that, $M_{2 \times 3}$, the set of all $2 \times 3$ matrices is a vector space under matrix addition and scalar multiplication.\footnote{Reference: https://math.stackexchange.com/questions/2129595/find-basis-for-set-of-matrices}
+
+\begin{enumerate}[label = \roman*.]
+    \item Find a basis for $M_{2 \times 3}$.
+    \item Based on your findings, what is the dimension of $M_{2 \times 3}$?
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 3 solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item Find a basis for $M_{2 \times 3}$. 
+        $$\mathcal{B} = \operatorname{Span} \left\{\begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},\begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \end{bmatrix}  \right\}$$
+        \item Based on your findings, what is the dimension of $M_{2 \times 3}$?
+
+        $$\operatorname{dim} M_{2 \times 3} = 6$$
+    \end{enumerate}
+
+\end{tcolorbox}
+
+\section{Problem 4}
+Consider the polynomials $\vec{\boldsymbol{p}}_{0}=p_{0}(x)=1, \vec{\boldsymbol{p}}_{1}=p_{1}(x)=x$ and $\vec{\boldsymbol{p}}_{2}=p_{2}(x)=x^{2}$ in $\mathbb{P}_{3}$, and the sample points,
+
+$$x_{0}=-3, x_{1}=-1, x_{2}=1 \: \text {and}\:  x_{3}=3$$
+
+\begin{enumerate}[label = \roman*.]
+    \item Compute $\left\langle\vec{\boldsymbol{p}}_{0}, \vec{\boldsymbol{p}}_{1}\right\rangle$.
+    \item Define $W=\operatorname{Span}\left\{\vec{\boldsymbol{p}}_{0}, \vec{\boldsymbol{p}}_{1}\right\}$ and compute the orthogonal projection of $\vec{\boldsymbol{p}}_{2}$ onto $W$.
+    \item We know that the orthogonal projection, or $\hat{\boldsymbol{p}}_{2}$ calculate in part (ii.) is the best approximation to $\vec{\boldsymbol{p}}_{2}$ in $W$. To determine exactly "how close " our approximation is to our original, calculate $\left\|\vec{\boldsymbol{p}}_{2}-\hat{\boldsymbol{p}}_{2}\right\|$.\footnote{We have often referred to this as the 'Least Squares error'.}
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 4 solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item 
+           \begin{align*}
+                \langle \vec{\boldsymbol{p}}_{0}, \vec{\boldsymbol{p}}_{1} \rangle &= \sum_{i=0}^{3} p_{0}(x_i)p_{1}(x_i) \\
+                &= p_{0}(-3)p_{1}(-3) + p_{0}(-1)p_{1}(-1) + p_{0}(1)p_{1}(1) + p_{0}(3)p_{1}(3) \\
+                &= 1 \cdot (-3) + 1 \cdot (-1) + 1 \cdot 1 + 1 \cdot 3 \\
+                &= -3 - 1 + 1 + 3 \\
+                &= 0
+            \end{align*}
+
+        \item Using the formula for orthogonal projection, we have:
+        
+        \begin{align*}
+            \hat{\boldsymbol{p}}_{2} &= \frac{\langle \vec{\boldsymbol{p}}_{2}, \vec{\boldsymbol{p}}_{0} \rangle}{\langle \vec{\boldsymbol{p}}_{0}, \vec{\boldsymbol{p}}_{0} \rangle} \vec{\boldsymbol{p}}_{0} + \frac{\langle \vec{\boldsymbol{p}}_{2}, \vec{\boldsymbol{p}}_{1} \rangle}{\langle \vec{\boldsymbol{p}}_{1}, \vec{\boldsymbol{p}}_{1} \rangle} \vec{\boldsymbol{p}}_{1}\\
+            &= \frac{20}{4} \vec{\boldsymbol{p}}_{0} + \frac{0}{20} \vec{\boldsymbol{p}}_{1}\\
+            &= 5 \vec{\boldsymbol{p}}_{0}\\
+            &= 5
+        \end{align*}
+
+        \item Let $\vec{\boldsymbol{e}}=\vec{\boldsymbol{p}}_2-\hat{\boldsymbol{p}}_2=x^2-5$. Thus,
+$$
+\left\|\vec{\boldsymbol{p}}_2-\hat{\boldsymbol{p}}_2\right\|=\|\vec{\boldsymbol{e}}\|=\sqrt{(\vec{\boldsymbol{e}}(-3))^2+(\vec{\boldsymbol{e}}(-1))^2+(\vec{\boldsymbol{e}}(1))^2+(\vec{\boldsymbol{e}}(3))^2}=\sqrt{16+16+16+16}=8
+$$
+
+    \end{enumerate}
+\end{tcolorbox}
+
+\section{Problem 5}
+Define the inner product,
+
+$$\left\langle p, q\right\rangle=\int_{-1}^{1} p(t) q(t)\, \mathrm{d} t$$
+
+and consider a basis for $\mathbb{P}_{3}, \mathcal{B}=\left\{1, t, t^{2}\right\}$ Using Gram-Schmidt, construct an orthogonal basis for the subspace spanned by $\mathcal{B}$.\footnote{Use the basis elements in the order given.}
+\newpage
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 5 solutions}]
+    Applying the Gram-Schmidt Process for the problem above:
+
+    \begin{align*}
+        \vec{\boldsymbol{v}}_1 & = \vec{\boldsymbol{x}}_1 = 1 \\
+         \vec{\boldsymbol{v}}_2 & =\vec{\boldsymbol{x}}_2-\frac{\vec{\boldsymbol{x}}_2 \cdot \vec{\boldsymbol{v}}_1}{\vec{\boldsymbol{v}}_1 \cdot \vec{\boldsymbol{v}}_1} \vec{\boldsymbol{v}}_1  = 1 - \frac{\langle t,1 \rangle}{\langle 1,1 \rangle} = t\\
+         \vec{\boldsymbol{v}}_3 & =\vec{\boldsymbol{x}}_3-\frac{\vec{\boldsymbol{x}}_3 \cdot \vec{\boldsymbol{v}}_1}{\vec{\boldsymbol{v}}_1 \cdot \vec{\boldsymbol{v}}_1} \vec{\boldsymbol{v}}_1-\frac{\vec{\boldsymbol{x}}_3 \cdot \vec{\boldsymbol{v}}_2}{\vec{\boldsymbol{v}}_2 \cdot \vec{\boldsymbol{v}}_2} \vec{\boldsymbol{v}}_2 = t^2 - \frac{\langle t^2,t \rangle}{\langle t,t \rangle} 1 - \frac{\langle t^2,1 \rangle}{\langle 1,1 \rangle} 1= t^2 - \frac{1}{3}
+        \end{align*}
+        
+        Thus, an orthogonal basis $\mathcal{B}'$ for $W$ is
+
+        $$\boxed{\mathcal{B}' = \operatorname{Span} \left\{ 1,t,t^2 - \frac{1}{3} \right\}}$$
+\end{tcolorbox}
+
+\section{Problem 6}
+Using the inner product,
+
+$$\left\langle f, g\right\rangle=\int_{0}^{2 \pi} f(t) g(t), \mathrm{d} t$$
+
+in the vector space, $C[0,2 \pi]$, we will find a third-order Fourier approximation to the square-wave function,
+
+$$
+f(t)= \begin{cases}1 & \text { if } 0 \leq x<\pi\\ -1 & \text { if } \pi \leq x<2 \pi\end{cases}
+$$
+
+Just so this problem doesn't evolve into a exercise in integration frustration, consider:
+
+The general Fourier approximation can be written as
+
+$$\frac{a_{0}}{2}+a_{1} \cos t+\cdots+a_{n} \cos n t+b_{1} \sin t+\cdots+b_{n} \sin n t $$
+
+where
+
+$$a_{k}=\frac{\left\langle f, \cos k t \right\rangle}{\left\langle \cos k t, \cos k t \right\rangle} \quad \text{and} \quad b_{k}=\frac{\left\langle f, \sin k t \right\rangle}{\left\langle \sin k t, \sin k t \right\rangle}, \quad \text{for} \quad k \geq 1$$
+
+Using an online integration resource of your choosing (be certain it can do symbolic calculations),
+
+\begin{enumerate}[label = \roman*.]
+    \item Calculate the coefficient of the constant term, i.e., $\displaystyle \frac{\langle f, 1\rangle}{\langle 1,1\rangle}$.\footnote{This quantity is also $\frac{a_{0}}{2}$ in the general formula above and with $k=0$ in the formula $a_{k}$, also above.}
+    
+    \item Calculate $\left\langle \cos k t, \cos k t \right\rangle$  and $\left\langle \sin k t, \sin k t \right\rangle$  to simplify the formula given above for $a_{k}$ and $b_{k}$.
+   
+    \item Now using the simplified version for $a_{k}$ and $b_{k}$ find the third-order Fourier approximation to the square wave function shown above.
+    
+    \item Using an online grapher, graph your series along with the original square wave.
+    
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 6 solutions}]
+    \begin{enumerate}[label = \roman*.]
+        \item $$\boxed{\frac{a_{0}}{2}=\frac{\langle f, 1\rangle}{\langle 1,1\rangle} = \frac{\int_{0}^{\pi}\left(1\right)\left(1\right)dt\ +\ \int_{\pi}^{2\pi}\left(-1\right)\left(1\right) \, \mathrm{d}t}{\int_{0}^{2\pi}\left(1\right)\left(1\right) \mathrm{d}t} = 0 }$$
+        \item 
+
+        \begin{minipage}{0.5\textwidth}
+    \begin{align*}
+        \left\langle \cos k t, \cos k t \right\rangle &= \int_{0}^{2\pi} \cos^2(k t) \, \mathrm{d}t \\
+        &= \int_{0}^{2\pi} \frac{1 + \cos(2kt)}{2} \, \mathrm{d}t \\
+        &= \frac{1}{2}\int_{0}^{2\pi} 1 + \cos(2kt) \, \mathrm{d}t \\
+        &= \frac{1}{2}\left[t + \frac{1}{2k}\sin(2kt)\right]_{0}^{2\pi} \\
+        &= \frac{1}{2}\left[2\pi+\frac{1}{2k}\sin\left(4\pi k\right)\right] \\
+        &= \pi+\frac{1}{4k}\sin\left(4\pi k\right)
+    \end{align*}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+    \begin{align*}
+        \left\langle \sin k t, \sin k t \right\rangle &= \int_{0}^{2\pi} \sin^2(k t) \, dt \\
+        &= \int_{0}^{2\pi} \frac{1 - \cos(2kt)}{2} \, \mathrm{d}t \\
+        &= \frac{1}{2}\int_{0}^{2\pi} 1 - \cos(2kt) \, \mathrm{d}t \\
+        &= \frac{1}{2}\left[t - \frac{1}{2k}\sin(2kt)\right]_{0}^{2\pi} \\
+        &= \frac{1}{2}\left[2\pi-\frac{1}{2k}\sin\left(4\pi k\right)\right] \\
+        &= \pi-\frac{1}{4k}\sin\left(4\pi k\right)
+    \end{align*}
+\end{minipage}
+\begin{enumerate}
+    \item Note that $k \in \mathbb{Z}^{+} \Longrightarrow \frac{1}{4k}\sin\left(4\pi k\right) = 0$. Thus, $\boxed{\pi = \left\langle \sin k t, \sin k t \right\rangle = \left\langle \cos k t, \cos k t \right\rangle}$.
+\end{enumerate}
+
+    \item 
+
+    \begin{align*}
+        a_0 &= \frac{\langle f, 1\rangle}{\langle 1,1\rangle} = 0 \\
+        a_k &= \frac{\langle f, \cos k t \rangle}{\langle \cos k t, \cos k t \rangle} = \frac{0}{\pi} = 0 \quad \text{for } k \geq 1 \\
+        b_k &= \frac{\langle f, \sin k t \rangle}{\langle \sin k t, \sin k t \rangle} = \frac{4}{\pi k}  \quad \text{for } k \geq 1
+    \end{align*}
+    
+        $$\boxed{f(t) \approx \frac{4}{\pi}\left(\sin\left(t\right)+\frac{\sin\left(3t\right)}{3}+\frac{\sin\left(5t\right)}{5}\right)}$$\footnote{I was wrong, this is a fourth order approximation. It should be $F_{3}(x) = \frac{4}{\pi}\sin(x)+\frac{4}{3\pi}\sin(3x)$.}
+    \end{enumerate}
+\begin{tcolorbox}[boxrule=0.25mm,enhanced jigsaw, breakable, colframe=red!75!black,colback=white,before=\hfill,after=\hfill]
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$t$},
+            ylabel={$y$},
+            xtick={0, pi/2, pi, 3*pi/2, 2*pi},
+            xticklabels={$0$, $\frac{\pi}{2}$, $\pi$, $\frac{3\pi}{2}$, $2\pi$},
+            xmin=0, xmax=2*pi,
+            ymin=-1.5, ymax=1.5,
+            domain=0:2*pi,
+            samples=200,
+            width=15 cm,
+            height=10cm,
+            grid style=dashed,
+            major grid style = {lightgray},
+            minor grid style = {lightgray!25}, 
+            ymajorgrids=true,
+            xmajorgrids=true,
+            grid=both
+        ]
+        
+        % Plot f(x)
+        \addplot[blue,smooth] {4/pi*(sin(deg(x)) + sin(3*deg(x))/3 + sin(5*deg(x))/5)};
+        \addlegendentry{$g(t)=\frac{4}{\pi}\left(\sin(t)+\frac{\sin(3t)}{3}+\frac{\sin(5t)}{5}\right)$};
+        
+        % Plot g(x)
+        \addplot[red, dashed] {ifthenelse(x<pi,1,-1)};
+        \addlegendentry{$f(t)$};
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{tcolorbox}
+\end{tcolorbox}
+\end{document}
+

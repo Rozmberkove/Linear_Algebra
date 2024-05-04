@@ -1,0 +1,310 @@
+\documentclass[letter,11pt]{article}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIV A.D. }
+\addtolength{\headwidth}{3cm}
+\addtolength{\headheight}{1cm}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=1.25cm}
+\usepackage{amsthm}
+\usepackage[most]{tcolorbox}
+
+\pgfplotsset{compat=1.18}
+
+\usepackage{hyperref}
+\usepackage{tasks}
+\settasks{
+	label=(\Alph*.),
+	label-width=21pt
+}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\setlength{\tabcolsep}{10 pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\newcommand{\mymk}[1]{%
+  \tikz[baseline=(char.base)]\node[anchor=south west, draw,rectangle,red, rounded corners, inner sep=2pt, minimum size=7mm,
+    text height=2mm](char){\ensuremath{#1}} ;}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet 9  (\S3.2-3, \S5.1-2, \S5.5)} \\ \midrule
+		\textbf{Name:}   & Aiden M. Rosenberg  & \textbf{Professor:} & Dr. Terry Bridgman Ph.D \\
+		\textbf{Course:} & Linear Algebra          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular}}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\vspace{1cm}
+
+\section{Problem 1}
+Determine if the following statements are \textbf{True} or \textbf{False}.
+\begin{enumerate}[label = \roman*.]
+    \item If $A$ is a $3 \times 3$ matrix with eigenvalues $\lambda = 1, 2, 3$, then $A$ is invertible.
+    \item If $\lambda = 0$ is an eigenvalue of $A$, then $A$ is singular.
+    \item If $\vec{\boldsymbol{v}}$ is an eigenvector of the matrix $A$ with corresponding eigenvalue of $2$ and is also an eigenvector of another matrix $B$ with corresponding eigenvalue of $3,$ then $\vec{\boldsymbol{v}}$ is an eigenvector of $(A + B)$ with corresponding eigenvalue of $5$.
+    \item If $\vec{\boldsymbol{v}}$ is an eigenvector, then for nonzero $c$, so is $c\vec{\boldsymbol{v}}$.
+    \item Row operations on a matrix $A$ do not affect the eigenvalues of $A$.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 1 solutions}]
+
+\begin{enumerate}[label = \roman*.]
+    \item \textbf{True}. Given that $0$ is not an eigenvalue of the matrix $A$, according to the Inevitable Matrix Theorem, $A$ is inevitable. If $\lambda = 0$, then $\operatorname{det}(A) = 0$, implying that $A^{-1}$ does not exist.
+    \item \textbf{True}. Singular $n\times n$ matrix's have zero eigenvalues i.e., $\lambda = 0$
+    \item \textbf{True}. Since $\vec{\boldsymbol{v}}$ is an eigenvector of $A$ and $B$ $\Rightarrow A v=\lambda_1 \vec{\boldsymbol{v}}$ and $B v=\lambda_1 \vec{\boldsymbol{v}}$ for some $\lambda_1, \lambda_2 \in \mathbb{C}$. Now $(A+B) \vec{\boldsymbol{v}}=A \vec{\boldsymbol{v}}+B \vec{\boldsymbol{v}}=\lambda_1 \vec{\boldsymbol{v}}+\lambda_2 \vec{\boldsymbol{v}}=\left(\lambda_1+\lambda_2\right) \vec{\boldsymbol{v}}$ implies that $\vec{\boldsymbol{v}}$ is an eigenvector of $A+B$. Moreover $\mu=\lambda_1+\lambda_2$ is an eigenvalue for $A+B$, given that $\lambda_{1}=2$ and $\lambda_{1}=2$, $\mu = 3$ which can be verified from above.\footnote{Reference: \url{https://math.stackexchange.com/q/1306065}}
+    \item \textbf{True}. Scaling an eigenvector $\vec{\boldsymbol{x}}$ by $c$ yields $A\left(c\vec{\boldsymbol{x}}\right) = cA\vec{\boldsymbol{x}} = c\lambda\vec{\boldsymbol{x}} = \lambda(c\vec{\boldsymbol{x}})$, so $c\vec{\boldsymbol{x}}$ is an eigenvector with the same eigenvalue.
+    \item \textbf{False}. Row operations change the determent of the matrix.
+\end{enumerate}
+    
+\end{tcolorbox}
+
+\newpage
+\section{Problem 2}
+
+Suppose the matrix $A=\begin{bmatrix} a & b\\ c & d \end{bmatrix}$ has an eigenvalue of $\lambda = 1$ with associated eigenvector $\vec{\boldsymbol{v}} = \begin{bmatrix} 2\\3\end{bmatrix}$ $A^{50}\vec{\boldsymbol{v}}$
+
+$$\boxed{A^{50}\vec{\boldsymbol{v}} = 1^{50}\vec{\boldsymbol{v}}=\vec{\boldsymbol{v}} = \begin{bmatrix} 2\\3\end{bmatrix}}$$
+
+\section{Problem 3}
+
+Which of the following is an eigenvector of $A = \begin{bmatrix} 2 & 4\\ 3 & 1 \end{bmatrix}$
+\begin{tasks}(4)
+    \task $\begin{bmatrix} 2 \\ 3 \end{bmatrix}$
+    \task $\begin{bmatrix} 4 \\ 1 \end{bmatrix}$
+    \task $\textcolor{red}{\begin{bmatrix} 1\\-1 \end{bmatrix}}$
+    \task \text{None of the above.}
+\end{tasks}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 3 solutions}]
+    The eigenvalues for matrix $A$ are $\lambda_{1} = 5$ and $\lambda_{2} = -2$ respectively. The eigenvectors for matrix $A$ are $\vec{\boldsymbol{v}}_{1} = \begin{bmatrix} 4/3 \\ 1\end{bmatrix}$ and $\vec{\boldsymbol{v}}_{1} = \begin{bmatrix} -1 \\ 1\end{bmatrix}$ respectively. 
+\end{tcolorbox}
+\newpage
+\section{Problem 4}
+Consider the following matrix.
+
+$$A= \begin{bmatrix} 1 & 3 & 2\\ 1 & 5 & -1\\ 0 & 0 & 3\end{bmatrix}$$
+
+\begin{enumerate}[label = (\Alph*.)]
+    \item With one simple row reduction step, you can row reduce this matrix to echelon form. Do so and find the corresponding eigenvalues of the resulting row-reduced matrix.
+    \item Now compute the eigenvalues of the original matrix (without any row reduction).
+    \item What very important conclusion can you make regarding using row reduction on a matrix prior to computing eigenvalues?
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 3 solutions}]
+    \begin{enumerate}[label = (\Alph*.)]
+    \item $$A= \begin{bmatrix} 1 & 3 & 2\\ 1 & 5 & -1\\ 0 & 0 & 3\end{bmatrix} \xrightarrow{R_2 = R_{2}-R_1} B = \begin{bmatrix} 1 & 3 & 2\\ 0 & 2 & -3\\ 0 & 0 & 3\end{bmatrix}$$
+        \begin{align*}
+                0 &=\operatorname{det}(B-\lambda I) = \begin{vmatrix} 1-\lambda & 3 & 2\\ 0 & 2-\lambda & -3\\ 0 & 0 & 3-\lambda \end{vmatrix}\\
+                &= \left(1-\lambda\right)(2-\lambda)(3-\lambda)\\
+                &\Rightarrow \boxed{\lambda = 1, 2, 3}
+            \end{align*}  
+    \item Now compute the eigenvalues of the original matrix (without any row reduction).
+    \begin{align*}
+                0 &=\operatorname{det}(A-\lambda I) = \begin{vmatrix} 1-\lambda & 3 & 2\\ 1 & 5-\lambda & -1\\ 0 & 0 & 3-\lambda \end{vmatrix}\\
+                &= 0\begin{vmatrix} 3 & 2 \\ 5-\lambda & -1 \end{vmatrix} + 0 \begin{vmatrix} 1-\lambda & 2 \\ 1 & -1 \end{vmatrix} + (3-\lambda) \begin{vmatrix} 1-\lambda & 3 \\ 1 & 5-\lambda \end{vmatrix}\\ 
+                & = (3-\lambda)\left(\lambda^2 -6\lambda +2\right)\\
+                &\Rightarrow \boxed{\lambda = 3+\sqrt{7},\quad 3,\quad 3-\sqrt{7}}
+            \end{align*}
+    \item What very important conclusion can you make regarding using row reduction on a matrix prior to computing eigenvalues?
+    \begin{enumerate}
+        \item The eigenvalues between a matrix and its reduced from are not equivalent.
+    \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+\newpage
+\section{Problem 5}
+Consider the matrix, $A=\begin{bmatrix}5 & 3 \\ 3 & 5\end{bmatrix}$
+\begin{enumerate}[label = (\Alph*.)]
+    \item Find the eigenvalues and corresponding eigenvectors of $A$.
+    \item Observe that the eigenvectors you found are linearly independent and thus form a basis for $\mathbb{R}^2$. Given the vector $\vec{\boldsymbol{x}}=\begin{bmatrix}2 \\ 6\end{bmatrix}$, find $c_1, c_2$ such that 
+    $$\vec{\boldsymbol{x}}=c_1 \vec{\boldsymbol{v}}_1+c_2 \vec{\boldsymbol{v}}_2 $$ 
+    where $\vec{\boldsymbol{v}}_1, \vec{\boldsymbol{v}}_2$ correspond to the eigenvectors found in (a).
+    \item Using the information found above, now write $A \vec{\boldsymbol{x}}$ as a linear combination of the eigenvectors $\vec{\boldsymbol{v}}_1, \vec{\boldsymbol{v}}_2$.
+\end{enumerate}
+
+\begin{tcolorbox}[boxrule=1mm,enhanced jigsaw, breakable,before=\hfill,after=\hfill,adjusted title={Problem 5 solutions}]
+    \begin{enumerate}[label = (\Alph*.)]
+        \item 
+            \begin{align*}
+                0 &=\operatorname{det}(A-\lambda I) = \begin{vmatrix}5-\lambda & 3 \\ 3 & 5-\lambda \end{vmatrix}\\
+                &= \lambda^2 -10\lambda +16 = \left(\lambda - 2\right)\left(\lambda - 8\right)\\
+                &\Rightarrow \boxed{\lambda_{1} = 2, \quad \text{and}\quad \lambda_{2}=8}
+            \end{align*}
+            \begin{minipage}{0.5\textwidth}
+            $$A-\lambda_{1}I = \begin{bmatrix} -3 & 3\\ 3 & -3 \end{bmatrix}\leadsto \begin{bmatrix} 1 & -1 \\ 0 & 0\end{bmatrix}$$
+            $$\leadsto\begin{aligned}
+                 x_{1} &= x_{2}\\
+                x_{2} &= x_{2}
+            \end{aligned} \leadsto \vec{\boldsymbol{v}}_1 = \begin{bmatrix}1\\1\end{bmatrix}$$
+            \end{minipage}
+            \begin{minipage}{0.5\textwidth}
+            $$A-\lambda_{2}I = \begin{bmatrix} 3 & 3\\ 3 & 3 \end{bmatrix}\leadsto \begin{bmatrix} 1 & 1 \\ 0 & 0\end{bmatrix}$$
+            $$\leadsto\begin{aligned}
+                 x_{1} &= -x_{2}\\
+                x_{2} &= x_{2}
+            \end{aligned} \leadsto \vec{\boldsymbol{v}}_2 = \begin{bmatrix}-1\\1\end{bmatrix}$$
+            \end{minipage}
+            \item $$\begin{bmatrix}2\\6\end{bmatrix} = c_{1}\begin{bmatrix}1\\1\end{bmatrix} +c_{2}\begin{bmatrix}-1\\1\end{bmatrix} \leadsto \begin{cases}
+            2= c_{1}-c_{2}\\
+            6=c_{1}+c_{2}
+            \end{cases} \Longrightarrow c_{1} =4 \quad \text{and} \quad c_{2} = 2$$
+            \item 
+                \begin{align*}
+                    A\vec{\boldsymbol{x}} &= A(c_1\vec{\boldsymbol{v}}_1 + c_2\vec{\boldsymbol{v}}_2)\\
+                    &= c_{1}A\vec{\boldsymbol{v}}_1 + c_{2}A\vec{\boldsymbol{v}}_{2}\\
+                    &=c_{1}\lambda_{1}\vec{\boldsymbol{v}}_{1} + c_{2}\lambda_{2}\vec{\boldsymbol{v}}_{2}
+                \end{align*}
+            Substituting the values of $c_1$, $c_2$, $\lambda_1$, and $\lambda_2$:
+                \begin{align*}
+                    A\vec{\boldsymbol{x}} &= 4(8)\begin{bmatrix} 1 \\ 1 \end{bmatrix} + 2(2)\begin{bmatrix} -1 \\ 1 \end{bmatrix}\\
+                    &= \begin{bmatrix} 32 \\ 32 \end{bmatrix} + \begin{bmatrix} -4 \\ 4 \end{bmatrix} =\begin{bmatrix} 28 \\ 36 \end{bmatrix}
+                \end{align*}
+    \end{enumerate}
+\end{tcolorbox}
+\newpage
+\section{Problem 6}
+Linear algebra and computation of eigenvectors/eigenvalues are often used in mathematical modeling, specifically, in this case, when modeling population growth of an age-structured population (i.e., the population progresses through stages, such as infant $\rightarrow$ juvenile $\rightarrow$ adult). Modeling such population growth can use a Leslie matrix which reflects this progression between stages. We will investigate how we may use these matrices to investigate long term population growth.
+Consider a seabird colony that consists of 2 classes of birds - young birds that do not breed and adult birds that do breed. Upon observation you note after each year,
+
+\begin{itemize}
+    \item The number of young birds (denoted $Y_n$ ) $50 \%$ of the young birds from the previous year, plus $200 \%$ of adult birds from the previous year.
+    \item The number of adult birds (denoted $A_n$ ) is $30 \%$ of the adults from the previous year plus $90 \%$ of the young birds from the previous year.
+\end{itemize}
+
+We can model this behavior with the following system of equations,
+$$
+\begin{aligned}
+Y_{n+1} & =0.5 Y_n+2 A_n \\
+A_{n+1} & =0.3 Y_n+0.9 A_n
+\end{aligned} \quad \Rightarrow \quad \mathbf{X}_{n+1}=L \mathbf{X}_n \text { where } \mathbf{X}_n=\left[\begin{array}{l}
+Y_n \\
+A_n
+\end{array}\right]
+$$
+\begin{enumerate}[label = (\Alph*.)]
+    \item Find the matrix $L$ from the matrix equation given above.
+    \item Calculate the eigenvectors and eigenvalues of $L$.
+    \item Using your work from $5 \mathrm{c}$, write $L \vec{\boldsymbol{x}}$ as a linear combination of your eigenvectors found above.\footnote{Your equation will use $c_1, c_2$ since we have not specified $\vec{\boldsymbol{x}}$ as we did in problem 5.}
+    \item If we assume this population growth continues then for subsequent years,
+    $$\mathbf{X}_2=L \mathbf{X}_1 \Rightarrow \mathbf{X}_3=L \mathbf{X}_2=L^2 \mathbf{X}_1 \ldots$$ Modify your equation from (C.) to express $L^n \vec{\boldsymbol{x}}$ as a linear combination of your eigenvectors.
+    \item Finally, in calculating $\lim _{n \rightarrow \infty} \mathbf{X}_n$, we see that the larger eigenvalue gives the population rate of growth, while the corresponding eigenvector gives the distribution of the population. What is the population rate of growth for these seabirds?
+For your eigenvector $\vec{\boldsymbol{v}}=\begin{bmatrix}x_1 \\ x_2\end{bmatrix}$, calculate $\frac{x_1}{x_1+x_2}$ and $\frac{x_2}{x_1+x_2}$ to determine the corresponding population distribution of immature and adult seabirds.
+\end{enumerate}
+
+\begin{tcolorbox}
+    \begin{enumerate}[label = (\Alph*.)]
+        \item  
+            $$\begin{aligned}
+                \mathbf{X}_{n+1} &= L \mathbf{X}_n\\
+                \begin{bmatrix} Y_{n+1} \\ A_{n+1} \end{bmatrix} &= \begin{bmatrix} 0.5 & 2 \\ 0.3 & 0.9 \end{bmatrix} \begin{bmatrix} Y_n \\ A_n \end{bmatrix}
+            \end{aligned} \leadsto \boxed{L = \begin{bmatrix} 0.5 & 2 \\ 0.3 & 0.9 \end{bmatrix} = \begin{bmatrix} 1/2 & 2 \\ 3/10 & 9/10 \end{bmatrix}}$$
+        \item 
+            \begin{align*}
+                0 &=\operatorname{det}(L-\lambda I) = \begin{vmatrix}[1.25]\frac{1}{2}-\lambda & 2 \\ \frac{3}{10} & \frac{9}{10}-\lambda \end{vmatrix}\\
+                &= \left(\frac{1}{2} - \lambda\right)\left(\frac{9}{10} - \lambda\right) - \frac{6}{10}\\
+                &= \lambda^2- \frac{7}{5}x - \frac{3}{20} = \frac{1}{20}\left(2x-3\right)\left(10x+1\right)\\
+                &\Rightarrow \boxed{\lambda_{1} = \frac{3}{2}, \quad \text{and}\quad \lambda_{2}=-\frac{1}{10}}
+            \end{align*}
+            \begin{minipage}{0.5\textwidth}
+            $$L-\lambda_{1}I = \begin{bmatrix}[1.25] -1 & 2\\ \frac{3}{10} & -\frac{3}{5} \end{bmatrix}\leadsto \begin{bmatrix} 1 & -2 \\ 0 & 0\end{bmatrix}$$
+            $$\leadsto\begin{aligned}
+                 x_{1} &= 2x_{2}\\
+                x_{2} &= x_{2}
+            \end{aligned} \leadsto \vec{\boldsymbol{v}}_1 = \begin{bmatrix}2\\1\end{bmatrix}$$
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+            $$L-\lambda_{1}I = \begin{bmatrix}[1.25] \frac{3}{5} & 2\\ \frac{3}{10} & 1 \end{bmatrix}\leadsto \begin{bmatrix} 3 & 10 \\ 0 & 0\end{bmatrix}$$
+            $$\leadsto\begin{aligned}
+                 x_{1} &= -\frac{10}{3}x_{2}\\
+                x_{2} &= x_{2}
+            \end{aligned} \leadsto \vec{\boldsymbol{v}}_2 = \begin{bmatrix}[1.25]-\frac{10}{3}\\1\end{bmatrix}$$
+            \end{minipage}
+        \item 
+            \begin{align*}
+                L\vec{\boldsymbol{x}} &= c_{1}\lambda_{1}\vec{\boldsymbol{v}}_{1} + c_{2}\lambda_{2}\vec{\boldsymbol{v}}_{2}\\
+                &= c_{1} \left(\frac{3}{2}\right)\begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_{2} \left(-\frac{1}{10}\right)\begin{bmatrix}[1.25] -\frac{10}{3} \\ 1 \end{bmatrix} = c_{1}\begin{bmatrix}[1.25] 3 \\ \frac{3}{2} \end{bmatrix} + c_{2} \begin{bmatrix}[1.25] \frac{1}{3} \\ -\frac{1}{10} \end{bmatrix} = \begin{bmatrix}[1.25] 3c_{1} + \frac{c_{2}}{3}\\ \frac{3c_{1}}{2}-\frac{c_{2}}{10} \end{bmatrix}
+            \end{align*}
+        \item 
+            \begin{align*}
+                L^n \vec{\boldsymbol{x}} &= c_{1}\lambda_{1}^{n}\vec{\boldsymbol{v}}_{1} + c_{2}\lambda_{2}^{n}\vec{\boldsymbol{v}}_{2}\\
+                &= c_{1} \left(\frac{3}{2}\right)^{n}\begin{bmatrix} 2 \\ 1 \end{bmatrix} + c_{2} \left(\frac{-1}{10}\right)^{n}\begin{bmatrix}[1.25] -\frac{10}{3} \\ 1 \end{bmatrix} = c_{1}\begin{bmatrix}[1.25] 2\left(\frac{3}{2}\right)^{n} \\ \left(\frac{3}{2}\right)^{n} \end{bmatrix} + c_{2} \begin{bmatrix}[1.25] \frac{-10}{3}\left(\frac{-1}{10}\right)^{n} \\ \left(\frac{-1}{10}\right)^{n}\end{bmatrix} = \begin{bmatrix}[1.25] 2c_{1}\left(\frac{3}{2}\right)^{n} - \frac{10}{3}c_{2}\left(\frac{-1}{10}\right)^{n}\\ c_{1}\left(\frac{3}{2}\right)^{n} + c_{2}\left(\frac{-1}{10}\right)^{n} \end{bmatrix}
+            \end{align*}
+            \item   To find the population rate of growth, we look at the eigenvalue corresponding to the largest magnitude, which is $\lambda_{1} = 1.5$. The population rate of growth is 1.5. To calculate the distribution of immature and adult seabirds using the eigenvector $\vec{\boldsymbol{v}}_{1} = \begin{bmatrix}2\\1 \end{bmatrix}$
+            $$\frac{x_1}{x_1+x_2} = \frac{2}{2+1} = \frac{2}{3}$$  
+            $$\frac{x_2}{x_1+x_2}=\frac{1}{2+1} = \frac{1}{3}$$
+            So, the corresponding population distribution is $\frac{2}{3}$ for immature seabirds and $\frac{1}{3}$ for adult seabirds.
+    \end{enumerate}
+\end{tcolorbox}
+\end{document}
+
